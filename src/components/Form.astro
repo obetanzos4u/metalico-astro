@@ -235,7 +235,8 @@
 
   .field input {
     display: block;
-    min-width: 250px;
+    width: 100%;
+    min-width: 0;
     line-height: 1.5;
     font-size: 14px;
   }
@@ -269,9 +270,17 @@
   }
 
   .container-form {
-    /* border: 1px solid black; */
     border-radius: 8px;
-    padding: 1rem 1.25rem;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
+    .container-form {
+      padding: 1rem 1.25rem;
+    }
   }
 
   .input-wrap {
@@ -362,6 +371,11 @@
     display: grid;
   }
 
+  form {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   .count-text {
     width: fit-content;
     font-size: 0.835rem;
@@ -370,11 +384,8 @@
   }
   .policy-privacy {
     color: rgba(2, 2, 30, 0.7);
-    max-width: 17rem;
+    max-width: 100%;
     font-size: 0.835rem;
-    color: rgba(2, 2, 30, 0.7);
-    max-width: 17rem;
-    font-size: 0.875rem;
   }
   .button {
     z-index: 2;
@@ -426,9 +437,19 @@
 
   .input-wrap.mod--contact-submit-step1 {
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
+
+  @media (min-width: 768px) {
+    .input-wrap.mod--contact-submit-step1 {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
   .input-wrap {
     z-index: 1;
     width: 100%;
@@ -554,7 +575,13 @@
   }
   #w-node-key {
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    #w-node-key {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   .stack.mod--contact-form {
     grid-column-gap: 2rem;

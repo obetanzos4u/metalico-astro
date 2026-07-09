@@ -8,7 +8,7 @@ flex
 items-center
 custom-container">
   <slot name="info-contact" />
-  <div class="flex-none px-4">
+  <div class="flex-none px-4 w-full max-w-full box-border">
     <div class="contact-form">
       {mostrarFormulario && <Form />}
     </div>
@@ -26,16 +26,21 @@ custom-container">
       0 0,
       0 0;
     background-repeat: no-repeat;
-    /* background-size: auto,100%; */
     background-size: cover;
     border-bottom-right-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
-    padding: 2rem 2.5rem 1.5rem;
+    padding: 1rem 1rem 1rem;
     transition:
       transform 0.6s,
       opacity 0.4s;
     position: relative;
     transform: perspective(800px) rotate(0);
+  }
+
+  @media (min-width: 768px) {
+    .contact-form {
+      padding: 2rem 2.5rem 1.5rem;
+    }
   }
 
   .container-contact {
