@@ -29,7 +29,15 @@ import Logo from "./Logo.astro";
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
       <li class="hidden xl:block sm:hidden"><a href="/tienda">Tienda</a></li>
-      <!-- <li><a id="menu-btn" href="#">Menú</a></li> -->
+      <li class="xl:hidden">
+        <button id="menu-btn" class="p-2 cursor-pointer" aria-label="Abrir menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -49,13 +57,17 @@ import Logo from "./Logo.astro";
         >
       </li>
       <li>
-        <a class="hover:bg-slate-100" href="#solutions"
-          >Equipo<img class="h-5" alt="arrow icon" src="/chevron-icon.svg" /></a
+        <a class="hover:bg-slate-100" href="#about"
+          >¿Quienes somos?<img
+            class="h-5"
+            alt="arrow icon"
+            src="/chevron-icon.svg"
+          /></a
         >
       </li>
       <li>
         <a class="hover:bg-slate-100" href="#service"
-          >Servicio<img class="h-5" alt="arrow icon" src="/chevron-icon.svg" /></a
+          >Servicios<img class="h-5" alt="arrow icon" src="/chevron-icon.svg" /></a
         >
       </li>
       <li>
@@ -68,12 +80,8 @@ import Logo from "./Logo.astro";
         >
       </li>
       <li>
-        <a class="hover:bg-slate-100" href="#about"
-          >¿Quienes somos?<img
-            class="h-5"
-            alt="arrow icon"
-            src="/chevron-icon.svg"
-          /></a
+        <a class="hover:bg-slate-100" href="#solutions"
+          >Equipo<img class="h-5" alt="arrow icon" src="/chevron-icon.svg" /></a
         >
       </li>
       <li>
@@ -83,6 +91,11 @@ import Logo from "./Logo.astro";
             alt="arrow icon"
             src="/chevron-icon.svg"
           /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100 border-t border-gray-200 mt-2 pt-4" href="/tienda"
+          >Tienda<img class="h-5" alt="arrow icon" src="/chevron-icon.svg" /></a
         >
       </li>
       <li>
@@ -110,20 +123,24 @@ import Logo from "./Logo.astro";
 <script>
   const menuBtn = document.getElementById("menu-btn");
   const modalMenu = document.querySelector("#modal-menu");
-  // const menuItems = modalMenu.querySelectorAll('li>a ');
+  const menuItems = modalMenu?.querySelectorAll("li > a");
   const closeBtn = document.querySelector("#close-btn");
 
-  //   function toggleDropdownMenu() {
-  //     modalMenu.classList.toggle('hidden');
-  //   }
+  function openMenu() {
+    modalMenu?.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
 
-  //   menuBtn.addEventListener('click',toggleDropdownMenu)
+  function closeMenu() {
+    modalMenu?.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
 
-  //   closeBtn.addEventListener('click',toggleDropdownMenu)
-
-  //   menuItems.forEach(Item => {
-  //     Item.addEventListener('click',toggleDropdownMenu);
-  // });
+  menuBtn?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  menuItems?.forEach((item) => {
+    item.addEventListener("click", closeMenu);
+  });
 </script>
 
 <script>
