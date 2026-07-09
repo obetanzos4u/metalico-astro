@@ -1,0 +1,44 @@
+---
+import LetsTalk from "./LetsTalk.astro";
+---
+
+<LetsTalk
+  title="Contáctanos"
+  subtitle="Hablemos de tu próximo proyecto metalmecánico"
+  color="white"
+  id="contact"
+  showFooterContent="true"
+  mostrarFormulario={true}
+>
+  <div slot="footer" class="gap-x-6 flex mx-auto"></div>
+  <!-- <img slot="contain" src="logo_metalico.png"/> -->
+  <img
+    slot="background"
+    alt=""
+    class="h-full w-full object-cover object-center"
+    src="bg-steel-black"
+    id="bg-image-contact"
+  />
+</LetsTalk>
+<script>
+  function isEdge() {
+    if (
+      navigator.userAgent.indexOf("Edge") > -1 ||
+      navigator.userAgent.indexOf("Edg") > -1
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  let imageElement = document.querySelector(
+    "#bg-image-contact",
+  ) as HTMLImageElement;
+
+  if (isEdge()) {
+    imageElement.src = "contact-bg.webp";
+  } else {
+    imageElement.src = "contact-bg.webp";
+  }
+</script>

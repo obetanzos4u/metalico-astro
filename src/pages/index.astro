@@ -1,0 +1,41 @@
+---
+import Contact from "../components/Contact.astro";
+import LandingHeader from "../components/LandingHeader.astro";
+import Solutions from "../components/Solutions.astro";
+import Service from "../components/Service.astro";
+import Products from "../components/Products.astro";
+import About from "../components/About.astro";
+import Production from "../components/Production.astro";
+import Layout from "../layouts/Layout.astro";
+import BannerSlider from "../components/BannerSlider.astro";
+---
+
+<Layout title="Metalico">
+  <LandingHeader />
+
+  <main
+    class="snap-y snap-proximity relative w-full h-screen overflow-y-scroll overflow-x-hidden"
+  >
+    <div class="snap-center">
+      <BannerSlider />
+    </div>
+    <div class="snap-center">
+      <About />
+    </div>
+    <div class="snap-center">
+      <Service />
+    </div>
+    <div class="snap-center">
+      <Products />
+    </div>
+    <div class="snap-center">
+      <Solutions />
+    </div>
+    <div class="snap-center">
+      <Production />
+    </div>
+    <div class="snap-center">
+      <Contact />
+    </div>
+  </main>
+</Layout>
