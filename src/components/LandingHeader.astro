@@ -10,7 +10,7 @@ import Logo from "./Logo.astro";
     <a href="./"><Logo /></a>
   </div>
 
-  <nav class="hidden xl:block sm:hidden">
+  <nav class="hidden lg:block sm:hidden">
     <ul
       class="flex text-base [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
@@ -28,8 +28,8 @@ import Logo from "./Logo.astro";
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li class="hidden xl:block sm:hidden"><a href="/tienda">Tienda</a></li>
-      <li class="xl:hidden">
+      <li class="hidden lg:block sm:hidden"><a href="/tienda">Tienda</a></li>
+      <li class="lg:hidden">
         <button id="menu-btn" class="p-2 cursor-pointer" aria-label="Abrir menú">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <line x1="3" y1="6" x2="21" y2="6"/>
@@ -43,7 +43,7 @@ import Logo from "./Logo.astro";
 
   <nav
     id="modal-menu"
-    class="hidden xl:hidden flex flex-col bg-white fixed top-0 left-0 right-0 bottom-0"
+    class="hidden lg:hidden flex flex-col bg-white fixed top-0 left-0 right-0 bottom-0"
   >
     <button id="close-btn" class="w-screen flex justify-end p-5">
       <img class="text-black h-6" src="/close-icon.svg" alt="close image" />
