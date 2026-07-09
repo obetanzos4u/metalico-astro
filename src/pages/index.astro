@@ -11,9 +11,9 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Metalico">
   <main
-    class="snap-y snap-proximity h-screen overflow-y-scroll overflow-x-hidden"
+    class="snap-y snap-mandatory snap-always h-screen overflow-y-scroll overflow-x-hidden"
   >
-    <div class="snap-center">
+    <div class="snap-start">
       <section id="home" class="landing-section relative h-screen w-screen bg-black" data-header-color="white">
         <div class="absolute inset-0 h-full w-full">
           <img class="h-full w-full object-cover object-center" src="home.avif" alt="Maquila metalmecánica" />
@@ -36,22 +36,22 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </section>
     </div>
-    <div class="snap-center">
+    <div class="snap-start">
       <About />
     </div>
-    <div class="snap-center">
+    <div class="snap-start">
       <Service />
     </div>
-    <div class="snap-center">
+    <div class="snap-start">
       <Products />
     </div>
-    <div class="snap-center">
+    <div class="snap-start">
       <Solutions />
     </div>
-    <div class="snap-center">
+    <div class="snap-start">
       <Production />
     </div>
-    <div class="snap-center">
+    <div class="snap-start">
       <Contact />
     </div>
   </main>
