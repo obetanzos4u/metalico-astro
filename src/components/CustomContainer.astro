@@ -8,7 +8,7 @@ flex
 items-center
 custom-container">
   <slot name="info-contact" />
-  <div class="flex-none w-full max-w-full box-border relative">
+  <div class="flex-none w-full max-w-full box-border">
     <div class="bg-file"></div>
     <div class="contact-form">
       {mostrarFormulario && <Form />}
@@ -18,23 +18,17 @@ custom-container">
 
 <style>
   .bg-file {
-    position: absolute;
-    inset: 0;
     background-image: url('/contact-form-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-bottom-right-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
-    pointer-events: none;
-    z-index: 1;
+    height: 6rem;
   }
 
   .contact-form {
-    position: relative;
-    z-index: 2;
-    background-color: transparent;
-    opacity: 1;
+    background: #fff;
     border-bottom-right-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
     padding: 1rem 1rem 1rem;
