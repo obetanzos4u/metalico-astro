@@ -1,71 +1,66 @@
 ---
-import Section from "./Section.astro";
-import "../styles/nft.css";
+const categorias = [
+  { titulo: "Herrajes para suspensión", img: "products.avif", link: "/tienda" },
+  { titulo: "Soporte de bobinas", img: "service.avif", link: "/tienda" },
+  { titulo: "Grapas y conectores", img: "production.avif" },
+  { titulo: "Placas para crucero", img: "solutions.avif" },
+];
 ---
 
-<Section
-  title="Productos"
-  subtitle="Somos fabricantes de productos para el sector de telecomunicaciones e industrial"
-  color="white"
-  id="products">
-  <div slot="contain">
-    <div class="nft">
-      <div class="main">
-        <div class="tokenInfo">
-          <div class="duration">
-            <p>
-              Consulte nuestra tienda para conocer nuestras línea de productos
-              manufacturados con alto nivel de detalle. Contamos con herrajes
-              para suspensión de distintos tipos, soporte de bobinas, grapas,
-              placas para crucero, bobinas enrolladas, brazos de extensión,
-              cables y demás productos.
-            </p>
+<section
+  id="products"
+  class="landing-section relative min-h-screen w-screen flex flex-col items-center justify-center text-white"
+  data-header-color="white"
+>
+  <div class="absolute inset-0 h-full w-full z-0">
+    <img class="h-full w-full object-cover object-center" src="products.avif" alt="" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 flex flex-col items-center">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-2">Productos</h2>
+    <p class="text-sm text-gray-300 mb-10 text-center max-w-xl">
+      Somos fabricantes de productos para el sector de telecomunicaciones e industrial
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+      {categorias.map((cat) => (
+        <div class="group relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-300 hover:scale-[1.03] hover:bg-white/20">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              src={cat.img}
+              alt={cat.titulo}
+            />
+          </div>
+          <div class="p-4 flex flex-col gap-2">
+            {cat.link ? (
+              <>
+                <h3 class="text-base md:text-lg font-semibold leading-tight">{cat.titulo}</h3>
+                <a
+                  href={cat.link}
+                  class="text-xs uppercase tracking-wider text-yellow-400 hover:text-yellow-300 transition-colors font-medium"
+                >
+                  Ver más &rarr;
+                </a>
+              </>
+            ) : (
+              <h3 class="text-base md:text-lg font-semibold leading-tight">{cat.titulo}</h3>
+            )}
           </div>
         </div>
-      </div>
+      ))}
     </div>
   </div>
-  <div slot="footer" class="gap-x-6 flex mx-auto">
-    <a
-      class="border-[3px] border-gray-600 bg-gray-600 text-sm rounded font-medium text-white px-12 py-2 inline-block transition-colors hover:border-gray-500 hover:bg-gray-500"
-      href="#">
-      Catálogo</a
-    >
-    <a
-      class="bg-white text-sm rounded font-medium px-12 py-2 transition-colors hover:bg-black hover:text-white inline-flex justify-center items-center text-black"
-      href="/tienda">
-      Tienda</a
-    >
-  </div>
+</section>
 
-  <img
-    slot="background"
-    alt="Productos metálicos fabricados por Metalico"
-    class="h-full w-full object-cover object-center"
-    src="products.avif"
-    id="bg-image-products"
-  />
-</Section>
-
-<script>
-  function isEdge() {
-    if (
-      navigator.userAgent.indexOf("Edge") > -1 ||
-      navigator.userAgent.indexOf("Edg") > -1
-    ) {
-      return true;
-    } else {
-      return false;
+<style>
+  @media (max-width: 767px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .grid > div:nth-child(n+3) {
+      display: none;
     }
   }
-
-  let imageElement = document.querySelector(
-    "#bg-image-products"
-  ) as HTMLImageElement;
-
-  if (isEdge()) {
-    imageElement.src = "products.webp";
-  } else {
-    imageElement.src = "products.avif";
-  }
-</script>
+</style>
