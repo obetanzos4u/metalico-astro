@@ -418,28 +418,25 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <script>
-  console.log('[Tienda] Diagnóstico iniciado');
+  const translations = {
+    'Next page': 'Siguiente página',
+    'Previous page': 'Página anterior',
+    'Add to cart': 'Agregar al carrito',
+    'Buy now': 'Comprar ahora',
+    'Unavailable': 'No disponible',
+    'Sold out': 'Agotado'
+  };
 
-  setTimeout(() => {
-    const container = document.getElementById('collection-component-1783555392245');
-    console.log('[Tienda] Contenedor:', container);
-    console.log('[Tienda] HTML del contenedor:', container?.innerHTML?.substring(0, 500));
-    console.log('[Tienda] Hijos del contenedor:', container?.childNodes.length);
-
-    if (window.ShopifyBuy) {
-      console.log('[Tienda] ShopifyBuy SDK cargado');
-    } else {
-      console.log('[Tienda] ShopifyBuy SDK NO cargado');
-    }
-
-    const allShopifyElements = document.querySelectorAll('[class*="shopify"]');
-    console.log('[Tienda] Elementos con "shopify" en class:', allShopifyElements.length);
-    allShopifyElements.forEach((el) => console.log('[Tienda] Elemento shopify:', el.tagName, el.className));
-
-    document.querySelectorAll('*').forEach((el) => {
-      if (el.tagName.includes('SHOPIFY') || el.tagName.includes('BUY')) {
-        console.log('[Tienda] Web component:', el.tagName);
+  function translateBuyButton() {
+    document.querySelectorAll('[class*="shopify"]').forEach(el => {
+      const text = el.textContent.trim();
+      if (translations[text]) {
+        el.textContent = translations[text];
       }
     });
-  }, 3000);
+  }
+
+  const observer = new MutationObserver(translateBuyButton);
+  observer.observe(document.body, { childList: true, subtree: true });
+  translateBuyButton();
 </script>
