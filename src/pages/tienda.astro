@@ -418,39 +418,28 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <script>
-  console.log('[Tienda] Script de paginación cargado');
+  console.log('[Tienda] Diagnóstico iniciado');
 
-  function walkShadow(root, depth = 0) {
-    const all = root.querySelectorAll('*');
-    all.forEach((el) => {
-      const text = el.textContent?.trim();
-      if (text && (text.includes('Next') || text.includes('next') || text.includes('Siguiente'))) {
-        console.log(`[Tienda] Elemento con texto de paginación:`, el.tagName, el.className, `"${text.substring(0, 50)}"`);
-      }
-    });
-    const hosts = root.querySelectorAll('*');
-    hosts.forEach((host) => {
-      if (host.shadowRoot) {
-        console.log(`[Tienda] Shadow host:`, host.tagName, host.id || host.className);
-        walkShadow(host.shadowRoot, depth + 1);
-      }
-    });
-  }
+  setTimeout(() => {
+    const container = document.getElementById('collection-component-1783555392245');
+    console.log('[Tienda] Contenedor:', container);
+    console.log('[Tienda] HTML del contenedor:', container?.innerHTML?.substring(0, 500));
+    console.log('[Tienda] Hijos del contenedor:', container?.childNodes.length);
 
-  let attempts = 0;
-  const interval = setInterval(() => {
-    attempts++;
-    console.log(`[Tienda] Intento ${attempts}`);
-    walkShadow(document);
-
-    const allText = document.body.innerText;
-    if (allText.includes('Next page')) {
-      console.log('[Tienda] Texto "Next page" encontrado en el DOM!');
+    if (window.ShopifyBuy) {
+      console.log('[Tienda] ShopifyBuy SDK cargado');
+    } else {
+      console.log('[Tienda] ShopifyBuy SDK NO cargado');
     }
 
-    if (attempts >= 10) {
-      console.log('[Tienda] Busqueda terminada');
-      clearInterval(interval);
-    }
-  }, 1500);
+    const allShopifyElements = document.querySelectorAll('[class*="shopify"]');
+    console.log('[Tienda] Elementos con "shopify" en class:', allShopifyElements.length);
+    allShopifyElements.forEach((el) => console.log('[Tienda] Elemento shopify:', el.tagName, el.className));
+
+    document.querySelectorAll('*').forEach((el) => {
+      if (el.tagName.includes('SHOPIFY') || el.tagName.includes('BUY')) {
+        console.log('[Tienda] Web component:', el.tagName);
+      }
+    });
+  }, 3000);
 </script>
