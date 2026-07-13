@@ -29,14 +29,17 @@
   <div class="columns mod--contact-video">
     <section class="columns__col mod--contact-video">
       <div class="contact__video-address">
-        <span class="contact-title">Contacto directo:</span>
-        <span class="contact-mail">contacto@metalico.mx</span>
-        <span class="contact-phone">
-          <a href="tel:+525581082193" class="contact-link">Tel: 55 8108 2193</a>
-        </span>
-        <span class="contact-phone">
-          <a href="https://wa.me/525581082193" target="_blank" rel="noopener noreferrer" class="contact-link">WhatsApp: 55 8108 2193</a>
-        </span>
+        <video class="contact-video" src="/download.mp4" muted loop playsinline></video>
+        <div class="contact-info-wrap">
+          <span class="contact-title">Contacto directo:</span>
+          <span class="contact-mail">contacto@metalico.mx</span>
+          <span class="contact-phone">
+            <a href="tel:+525581082193" class="contact-link">Tel: 55 8108 2193</a>
+          </span>
+          <span class="contact-phone">
+            <a href="https://wa.me/525581082193" target="_blank" rel="noopener noreferrer" class="contact-link">WhatsApp: 55 8108 2193</a>
+          </span>
+        </div>
       </div>
       <div>
         <button class="book_call">
@@ -234,11 +237,29 @@
     display: flex;
   }
   .contact__video-address {
-    grid-column-gap: 0.5rem;
-    grid-row-gap: 0.5rem;
-    flex-flow: column;
+    grid-column-gap: 1rem;
+    flex-flow: row;
     align-items: flex-start;
     display: flex;
+  }
+
+  .contact-info-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-video {
+    width: 160px;
+    height: auto;
+    border-radius: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 767px) {
+    .contact-video {
+      display: none;
+    }
   }
   .button__icons.bg-color-yellow {
     border-color: var(--yellow);
