@@ -416,3 +416,23 @@ import Layout from "../layouts/Layout.astro";
 })();
 /*]]>*/
 </script>
+
+<script>
+  function cambiarTextoPaginacion() {
+    const btn = document.querySelector('.shopify-buy__collection-pagination-button.shopify-buy__btn');
+    if (btn && btn.textContent.trim() === 'Next page') {
+      btn.textContent = 'Ver más';
+    }
+  }
+
+  const observer = new MutationObserver(() => {
+    cambiarTextoPaginacion();
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  document.addEventListener('shopify:buy-button:ready', () => {
+    cambiarTextoPaginacion();
+    observer.disconnect();
+  });
+</script>
