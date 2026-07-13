@@ -27,13 +27,13 @@ import CustomContainer from "./CustomContainer.astro";
         {subtitle}
       </p>
     </header>
-    <div class="container-contact mt-4">
-      <div class="flex flex-col lg:flex-row w-[90%] max-w-full justify-between mx-auto">
+    <div class="container-contact mt-8">
+      <div class="flex flex-col lg:flex-row w-[90%] max-w-full justify-around mx-auto">
         <CustomInfoContain />
         <CustomContainer mostrarFormulario={mostrarFormulario} />
       </div>
     </div>
-    <footer class="flex flex-col items-center pb-10">
+    <footer class="flex flex-col items-center pb-3">
       <slot name="footer" />
     </footer>
   </div>
