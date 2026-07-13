@@ -410,30 +410,42 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 },
-      }, function () {
-        setTimeout(function () {
-          function walkShadow(root) {
-            root.querySelectorAll('*').forEach(function (el) {
-              var t = el.textContent.trim();
-              if (t === 'Next page' || t === 'Previous page') {
-                el.textContent = t === 'Next page' ? 'Ver más' : 'Anterior';
-              }
-            });
-            root.querySelectorAll('*').forEach(function (host) {
-              if (host.shadowRoot) walkShadow(host.shadowRoot);
-            });
-          }
-          walkShadow(document);
-
-          var container = document.getElementById('collection-component-1783555392245');
-          if (container && container.firstElementChild && container.firstElementChild.shadowRoot) {
-            var btn = container.firstElementChild.shadowRoot.querySelector('[class*="pagination"]');
-            if (btn) btn.textContent = 'Ver más';
-          }
-        }, 1000);
       });
     });
   }
 })();
 /*]]>*/
+</script>
+
+<script>
+  var traducciones = {
+    'Next page': 'Ver m\u00E1s',
+    'Previous page': 'Anterior'
+  };
+
+  function reemplazarTexto(root) {
+    var iter = document.createNodeIterator(root, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while (node = iter.nextNode()) {
+      var texto = node.textContent.trim();
+      if (traducciones[texto]) {
+        node.textContent = traducciones[texto];
+      }
+    }
+    var hosts = root.querySelectorAll('*');
+    for (var i = 0; i < hosts.length; i++) {
+      if (hosts[i].shadowRoot) reemplazarTexto(hosts[i].shadowRoot);
+    }
+  }
+
+  var intentos = 0;
+  var poll = setInterval(function () {
+    intentos++;
+    reemplazarTexto(document);
+
+    if (document.body.innerText.indexOf('Next page') === -1 && document.body.innerText.indexOf('Previous page') === -1 && intentos > 3) {
+      clearInterval(poll);
+    }
+    if (intentos > 30) clearInterval(poll);
+  }, 1000);
 </script>
