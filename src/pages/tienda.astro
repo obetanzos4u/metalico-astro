@@ -410,33 +410,30 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 },
+      }).then(function () {
+        setTimeout(function () {
+          function walkShadow(root) {
+            root.querySelectorAll('*').forEach(function (el) {
+              var t = el.textContent.trim();
+              if (t === 'Next page' || t === 'Previous page') {
+                el.textContent = t === 'Next page' ? 'Ver más' : 'Anterior';
+              }
+            });
+            root.querySelectorAll('*').forEach(function (host) {
+              if (host.shadowRoot) walkShadow(host.shadowRoot);
+            });
+          }
+          walkShadow(document);
+
+          var container = document.getElementById('collection-component-1783555392245');
+          if (container && container.firstElementChild && container.firstElementChild.shadowRoot) {
+            var btn = container.firstElementChild.shadowRoot.querySelector('[class*="pagination"]');
+            if (btn) btn.textContent = 'Ver más';
+          }
+        }, 1000);
       });
     });
   }
 })();
 /*]]>*/
-</script>
-
-<script>
-  const translations = {
-    'Next page': 'Siguiente página',
-    'Previous page': 'Página anterior',
-    'Add to cart': 'Agregar al carrito',
-    'Buy now': 'Comprar ahora',
-    'Unavailable': 'No disponible',
-    'Sold out': 'Agotado'
-  };
-
-  function translateBuyButton() {
-    document.querySelectorAll('[class*="shopify"]').forEach(el => {
-      const text = el.textContent.trim();
-      if (translations[text]) {
-        el.textContent = translations[text];
-      }
-    });
-  }
-
-  const observer = new MutationObserver(translateBuyButton);
-  observer.observe(document.body, { childList: true, subtree: true });
-  translateBuyButton();
 </script>
