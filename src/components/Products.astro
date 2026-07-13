@@ -1,9 +1,29 @@
 ---
 const categorias = [
-  { titulo: "Herrajes para suspensión", img: "products.avif", link: "/tienda" },
-  { titulo: "Soporte de bobinas", img: "service.avif", link: "/tienda" },
-  { titulo: "Grapas y conectores", img: "production.avif", link: "/tienda" },
-  { titulo: "Placas para crucero", img: "solutions.avif", link: "/tienda" },
+  {
+    titulo: "Herrajes para Redes Aéreas",
+    tipos: ["Aéreo accesorios", "Cruceta"],
+    img: "products.avif",
+    link: "/tienda",
+  },
+  {
+    titulo: "Brazos para Instalación Aérea",
+    tipos: ['Brazo "D"', 'Brazo "J" ADSS', "Brazo tangente"],
+    img: "service.avif",
+    link: "/tienda",
+  },
+  {
+    titulo: "Cables Mensajeros",
+    tipos: ['Cable mensajero 3/16"', 'Cable mensajero 1/4"', 'Cable mensajero 3/8"'],
+    img: "production.avif",
+    link: "/tienda",
+  },
+  {
+    titulo: "Bases y Soportes",
+    tipos: ["Bajada base uso exterior"],
+    img: "solutions.avif",
+    link: "/tienda",
+  },
 ];
 ---
 
@@ -20,7 +40,7 @@ const categorias = [
   <div class="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 flex flex-col items-center">
     <h2 class="text-4xl md:text-5xl font-bold text-white mb-2">Productos</h2>
     <p class="text-sm text-gray-300 mb-10 text-center max-w-xl">
-      Somos fabricantes de productos para el sector de telecomunicaciones e industrial
+      Equipamiento para redes de telecomunicaciones e infraestructura industrial
     </p>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
@@ -33,20 +53,19 @@ const categorias = [
               alt={cat.titulo}
             />
           </div>
-          <div class="p-4 flex flex-col gap-2">
+          <div class="p-4 flex flex-col gap-1.5">
+            <h3 class="text-base md:text-lg font-semibold leading-tight">{cat.titulo}</h3>
+            <ul class="text-xs text-gray-300 space-y-0.5">
+              {cat.tipos.map((t) => <li class="before:content-['–'] before:mr-1 before:text-yellow-400">{t}</li>)}
+            </ul>
             {cat.link ? (
-              <>
-                <h3 class="text-base md:text-lg font-semibold leading-tight">{cat.titulo}</h3>
-                <a
-                  href={cat.link}
-                  class="text-xs uppercase tracking-wider text-yellow-400 hover:text-yellow-300 transition-colors font-medium"
-                >
-                  Ver más &rarr;
-                </a>
-              </>
-            ) : (
-              <h3 class="text-base md:text-lg font-semibold leading-tight">{cat.titulo}</h3>
-            )}
+              <a
+                href={cat.link}
+                class="text-xs uppercase tracking-wider text-yellow-400 hover:text-yellow-300 transition-colors font-medium pt-1 inline-block"
+              >
+                Ver más &rarr;
+              </a>
+            ) : null}
           </div>
         </div>
       ))}
