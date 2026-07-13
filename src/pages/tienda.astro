@@ -420,15 +420,49 @@ import Layout from "../layouts/Layout.astro";
 <script>
   console.log('[Tienda] Script de paginación cargado');
 
-  const interval = setInterval(() => {
-    const btn = document.querySelector('.shopify-buy__collection-pagination-button.shopify-buy__btn');
-    if (btn) {
-      console.log('[Tienda] Botón encontrado:', btn.textContent.trim());
-      if (btn.textContent.trim() === 'Next page') {
-        btn.textContent = 'Ver más';
-        console.log('[Tienda] Texto cambiado a "Ver más"');
+  function queryDeepShadow(selector, root = document) {
+    const elements = Array.from(root.querySelectorAll(selector));
+    const hosts = root.querySelectorAll('*');
+    hosts.forEach((host) => {
+      if (host.shadowRoot) {
+        elements.push(...queryDeepShadow(selector, host.shadowRoot));
       }
+    });
+    return elements;
+  }
+
+  function logAllButtons() {
+    const all = document.querySelectorAll('button, a, [role="button"]');
+    console.log('[Tienda] Total botones en página:', all.length);
+    all.forEach((b, i) => {
+      if (b.textContent.trim()) console.log(`[Tienda] Botón ${i}:`, b.textContent.trim().substring(0, 40));
+    });
+
+    const shadowHosts = document.querySelectorAll('*');
+    shadowHosts.forEach((host) => {
+      if (host.shadowRoot) {
+        console.log('[Tienda] Shadow host encontrado:', host.tagName, host.id || host.className);
+        host.shadowRoot.querySelectorAll('button, a').forEach((b, i) => {
+          if (b.textContent.trim()) console.log(`[Tienda] Shadow button ${i}:`, b.textContent.trim().substring(0, 40));
+        });
+      }
+    });
+  }
+
+  const interval = setInterval(() => {
+    logAllButtons();
+    const btns = queryDeepShadow('.shopify-buy__collection-pagination-button');
+    if (btns.length > 0) {
+      console.log('[Tienda] Botón de paginación encontrado via deep query');
+      btns.forEach((btn) => {
+        if (btn.textContent.trim() === 'Next page') {
+          btn.textContent = 'Ver más';
+          console.log('[Tienda] Texto cambiado a "Ver más"');
+        }
+      });
       clearInterval(interval);
+    } else {
+      console.log('[Tienda] Buscando...');
     }
-  }, 500);
+  }, 2000);
 </script>
