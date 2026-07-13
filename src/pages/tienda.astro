@@ -418,21 +418,17 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <script>
-  function cambiarTextoPaginacion() {
+  console.log('[Tienda] Script de paginación cargado');
+
+  const interval = setInterval(() => {
     const btn = document.querySelector('.shopify-buy__collection-pagination-button.shopify-buy__btn');
-    if (btn && btn.textContent.trim() === 'Next page') {
-      btn.textContent = 'Ver más';
+    if (btn) {
+      console.log('[Tienda] Botón encontrado:', btn.textContent.trim());
+      if (btn.textContent.trim() === 'Next page') {
+        btn.textContent = 'Ver más';
+        console.log('[Tienda] Texto cambiado a "Ver más"');
+      }
+      clearInterval(interval);
     }
-  }
-
-  const observer = new MutationObserver(() => {
-    cambiarTextoPaginacion();
-  });
-
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  document.addEventListener('shopify:buy-button:ready', () => {
-    cambiarTextoPaginacion();
-    observer.disconnect();
-  });
+  }, 500);
 </script>
