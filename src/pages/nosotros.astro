@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Nosotros — Metalico" description="Conoce la historia, equipo y valores de Metalico">
+  <header class="flex items-center justify-between px-[5%] py-4 bg-white border-b border-gray-200">
+    <a href="/" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Volver al inicio
+    </a>
+    <h1 class="text-xl font-semibold text-gray-900">Metalico</h1>
+    <div class="w-20"></div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="relative h-[50vh] min-h-[320px] flex items-center justify-center text-white">
+      <img class="absolute inset-0 h-full w-full object-cover" src="about.avif" alt="" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
+      <div class="relative z-10 text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Más de 20 años de experiencia</h1>
+        <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">Transformando el metal y el plástico en soluciones industriales de alto rendimiento</p>
+      </div>
+    </section>
+
+    <!-- Historia -->
+    <section class="max-w-5xl mx-auto px-4 py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-yellow-500 font-semibold text-sm uppercase tracking-wider">Nuestra historia</span>
+          <h2 class="text-3xl font-bold text-gray-900 mt-2 mb-6">Hechos de metal, movidos por personas</h2>
+          <p class="text-gray-600 mb-4">Metalico nació en el año 2002 en un pequeño taller de la Ciudad de México con una sola máquina y un sueño: demostrar que la industria mexicana podía competir en calidad con cualquier país del mundo.</p>
+          <p class="text-gray-600 mb-4">Hoy ocupamos una planta de 4,500 m² con maquinaria CNC, líneas de galvanizado, cabinas de pintura electrostática y un área de inyección de plástico con capacidad de 112 a 455 toneladas.</p>
+          <p class="text-gray-600">Nuestro equipo de 80 colaboradores trabaja bajo los principios de mejora continua, seguridad industrial y respeto al medio ambiente.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-2xl overflow-hidden"><img class="h-full w-full object-cover" src="service.avif" alt="" /></div>
+          <div class="rounded-2xl overflow-hidden mt-8"><img class="h-full w-full object-cover" src="production.avif" alt="" /></div>
+          <div class="rounded-2xl overflow-hidden -mt-4"><img class="h-full w-full object-cover" src="solutions.avif" alt="" /></div>
+          <div class="rounded-2xl overflow-hidden"><img class="h-full w-full object-cover" src="products.avif" alt="" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Misión / Visión / Valores -->
+    <section class="bg-gray-50 py-20">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <span class="text-yellow-500 font-semibold text-sm uppercase tracking-wider">Filosofía</span>
+          <h2 class="text-3xl font-bold text-gray-900 mt-2">Misión, Visión y Valores</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            <div class="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Misión</h3>
+            <p class="text-gray-600 text-sm">Proveer soluciones de manufactura metalmecánica e inyección de plástico con la más alta calidad, impulsando la competitividad de nuestros clientes a través de innovación, precisión y servicio.</p>
+          </div>
+          <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            <div class="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Visión</h3>
+            <p class="text-gray-600 text-sm">Ser el socio industrial de referencia en México y Latinoamérica, reconocido por nuestra excelencia técnica, responsabilidad ambiental y capacidad de innovación constante.</p>
+          </div>
+          <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            <div class="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center mb-5">
+              <svg class="w-7 h-7 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Valores</h3>
+            <p class="text-gray-600 text-sm">Calidad sin compromiso, seguridad como prioridad, respeto al medio ambiente, mejora continua, trabajo en equipo y compromiso con el cliente y su éxito.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galería -->
+    <section class="max-w-6xl mx-auto px-4 py-20">
+      <div class="text-center mb-12">
+        <span class="text-yellow-500 font-semibold text-sm uppercase tracking-wider">Galería</span>
+        <h2 class="text-3xl font-bold text-gray-900 mt-2">Nuestras instalaciones</h2>
+        <p class="text-gray-600 mt-2 max-w-xl mx-auto">Conoce el taller, la maquinaria y el equipo que hacen posible cada proyecto.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="home.avif" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="service.avif" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="production.avif" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="solutions.avif" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="products.avif" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="herraje-metalico.jpg" alt="" /></div>
+      </div>
+    </section>
+
+    <!-- Tecnología -->
+    <section class="bg-gray-50 py-20">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <span class="text-yellow-500 font-semibold text-sm uppercase tracking-wider">Tecnología</span>
+          <h2 class="text-3xl font-bold text-gray-900 mt-2">Maquinaria y capacidades</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+            <div class="text-3xl font-bold text-yellow-500 mb-1">4,500</div>
+            <div class="text-sm text-gray-500">m² de planta</div>
+          </div>
+          <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+            <div class="text-3xl font-bold text-yellow-500 mb-1">80+</div>
+            <div class="text-sm text-gray-500">Colaboradores</div>
+          </div>
+          <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+            <div class="text-3xl font-bold text-yellow-500 mb-1">22</div>
+            <div class="text-sm text-gray-500">Años de experiencia</div>
+          </div>
+          <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
+            <div class="text-3xl font-bold text-yellow-500 mb-1">450+</div>
+            <div class="text-sm text-gray-500">Proyectos entregados</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-stone-600 py-16">
+      <div class="text-center px-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">¿Listo para trabajar juntos?</h2>
+        <p class="text-gray-200 mb-6 max-w-xl mx-auto">Cuéntanos tu proyecto y te daremos una cotización en 24 horas.</p>
+        <a href="/#contact" class="inline-block bg-yellow-400 text-black font-semibold px-10 py-3 rounded transition-all hover:bg-yellow-300 hover:scale-[1.02]">Solicitar cotización</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-stone-600 text-gray-300">
+    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-3">Metalico</h3>
+        <p class="text-sm text-gray-400">Maquila metalmecánica e inyección de plástico con más de 20 años de experiencia en la industria.</p>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-3">Enlaces</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/servicios" class="hover:text-white transition-colors">Servicios</a></li>
+          <li><a href="/tienda" class="hover:text-white transition-colors">Tienda</a></li>
+          <li><a href="/#contact" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-3">Industrias</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Telecomunicaciones</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Automotriz</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Construcción</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Industrial</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-3">Contacto</h3>
+        <ul class="space-y-2 text-sm">
+          <li><span class="block text-gray-400 text-xs">Correo</span><a href="mailto:contacto@metalico.mx" class="hover:text-white transition-colors">contacto@metalico.mx</a></li>
+          <li><span class="block text-gray-400 text-xs">Teléfono</span><a href="tel:+525581082193" class="hover:text-white transition-colors">55 8108 2193</a></li>
+          <li><span class="block text-gray-400 text-xs">WhatsApp</span><a href="https://wa.me/525581082193" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">55 8108 2193</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800">
+      <p class="text-center text-xs text-gray-600 py-4">&copy; 2026 Metalico. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</Layout>
