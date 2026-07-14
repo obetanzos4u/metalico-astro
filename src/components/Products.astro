@@ -1,13 +1,13 @@
 ---
 const categorias = [
   {
-    titulo: "Herrajes para Redes A├®reas",
-    tipos: ["A├®reo accesorios", "Cruceta"],
+    titulo: "Herrajes para Redes Aéreas",
+    tipos: ["Aéreo accesorios", "Cruceta"],
     img: "herraje-metalico.jpg",
     link: "/tienda",
   },
   {
-    titulo: "Brazos para Instalaci├│n A├®rea",
+    titulo: "Brazos para Instalación Aérea",
     tipos: ['Brazo "D"', 'Brazo "J" ADSS', "Brazo tangente"],
     img: "extension-metalico.jpg",
     link: "/tienda",
@@ -56,14 +56,14 @@ const categorias = [
           <div class="p-4 flex flex-col gap-1.5">
             <h3 class="text-base md:text-lg font-semibold leading-tight">{cat.titulo}</h3>
             <ul class="text-xs text-gray-300 space-y-0.5">
-              {cat.tipos.map((t) => <li class="before:content-['ÔÇô'] before:mr-1 before:text-yellow-400">{t}</li>)}
+              {cat.tipos.map((t) => <li class="before:content-['-'] before:mr-1.5 before:text-yellow-400">{t}</li>)}
             </ul>
             {cat.link ? (
               <a
                 href={cat.link}
                 class="text-xs uppercase tracking-wider text-yellow-400 hover:text-yellow-300 transition-colors font-medium pt-1 inline-block"
               >
-                Ver m├ís &rarr;
+                Ver más &rarr;
               </a>
             ) : null}
           </div>
@@ -75,7 +75,7 @@ const categorias = [
       href="/tienda"
       class="mt-8 inline-block border-[3px] border-stone-600 bg-stone-600 text-sm rounded font-medium text-white px-10 py-2.5 transition-all hover:bg-yellow-400 hover:text-black hover:border-yellow-400 hover:scale-[1.02]"
     >
-      Ver cat├ílogo completo &rarr;
+      Ver catálogo completo &rarr;
     </a>
   </div>
 </section>
