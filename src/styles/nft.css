@@ -1,6 +1,6 @@
 .nft {
   user-select: none;
-  max-width: 650px;
+  max-width: 850px;
   margin: auto;
   border: 1px solid #ffffff22;
   background-color: #282c34;
@@ -57,4 +57,7 @@
   filter: brightness(0.5);
   top: -100%;
   left: 160%;
+}
+.company-description p {
+  margin-bottom: 1rem;
 }
