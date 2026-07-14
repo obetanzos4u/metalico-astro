@@ -85,16 +85,21 @@ import Layout from "../layouts/Layout.astro";
         <p class="text-gray-600 mt-2 max-w-xl mx-auto">Conoce el taller, la maquinaria y el equipo que hacen posible cada proyecto.</p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-1.png" alt="" /></div>
-        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-2.png" alt="" /></div>
-        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-3.png" alt="" /></div>
-        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-4.png" alt="" /></div>
-        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-5.png" alt="" /></div>
-        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-6.png" alt="" /></div>
-        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-7.png" alt="" /></div>
-        <div class="rounded-xl overflow-hidden aspect-[4/3]"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-8.png" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3] cursor-pointer gallery-item"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-1.png" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3] cursor-pointer gallery-item"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-2.png" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3] cursor-pointer gallery-item"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-3.png" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3] cursor-pointer gallery-item"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-4.png" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3] cursor-pointer gallery-item"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-5.png" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3] cursor-pointer gallery-item"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-6.png" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3] cursor-pointer gallery-item"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-7.png" alt="" /></div>
+        <div class="rounded-xl overflow-hidden aspect-[4/3] cursor-pointer gallery-item"><img class="h-full w-full object-cover hover:scale-105 transition-transform duration-500" src="F-GALLERY-8.png" alt="" /></div>
       </div>
     </section>
+
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center" onclick="closeLightbox(event)">
+      <button class="absolute top-4 right-4 text-white text-4xl leading-none w-12 h-12 flex items-center justify-center hover:opacity-70 z-10 cursor-pointer" onclick="closeLightbox()">&times;</button>
+      <img id="lightbox-img" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg" src="" alt="" />
+    </div>
 
     <!-- Tecnología -->
     <section class="bg-gray-50 py-20">
@@ -171,3 +176,32 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </footer>
 </Layout>
+
+<script>
+  function openLightbox(src) {
+    const lb = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+    img.src = src;
+    lb.classList.remove("hidden");
+    lb.classList.add("flex");
+    document.body.style.overflow = "hidden";
+  }
+  function closeLightbox(event) {
+    if (event && event.target !== event.currentTarget) return;
+    const lb = document.getElementById("lightbox");
+    lb.classList.add("hidden");
+    lb.classList.remove("flex");
+    document.body.style.overflow = "";
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".gallery-item").forEach(function (el) {
+      el.addEventListener("click", function () {
+        const img = this.querySelector("img");
+        openLightbox(img.src);
+      });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeLightbox();
+    });
+  });
+</script>
