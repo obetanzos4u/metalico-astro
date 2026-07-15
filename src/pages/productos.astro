@@ -39,7 +39,7 @@ function formatPrice(amount, currency) {
         const price = p.priceRange.minVariantPrice;
         const image = p.images.edges[0]?.node;
         return (
-          
+          <a
             href={`/productos/${p.handle}`}
             class="product-card group block border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
             data-price={price.amount}
