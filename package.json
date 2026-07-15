@@ -15,6 +15,7 @@
     "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.6",
+    "graphql-request": "^7.4.0",
     "tailwindcss": "^4.3.2"
   },
   "description": "Landing page de METALLICO - Maquila metalmecánica e inyección de plástico",
