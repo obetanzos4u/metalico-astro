@@ -1,1 +1,1 @@
-Este es el proyecto de landing de Metallico para 2024
+Este es el proyecto de landing de Metallico para 2026
