@@ -15,6 +15,13 @@ import Layout from "../layouts/Layout.astro";
   </header>
 
   <main class="max-w-7xl mx-auto px-4 pb-16">
+    <div class="flex justify-end mb-4">
+      <select id="sort-select" class="text-sm border border-gray-300 rounded px-3 py-1.5 text-gray-700 bg-white cursor-pointer">
+        <option value="default">Ordenar por</option>
+        <option value="price-asc">Precio: menor a mayor</option>
+        <option value="price-desc">Precio: mayor a menor</option>
+      </select>
+    </div>
     <div id='collection-component-1783555392245'></div>
   </main>
 
@@ -338,4 +345,52 @@ import Layout from "../layouts/Layout.astro";
   }
 })();
 /*]]>*/
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sortSelect = document.getElementById("sort-select");
+
+    function waitForProducts(callback) {
+      const observer = new MutationObserver(function () {
+        const products = document.querySelectorAll(".shopify-buy__product");
+        if (products.length > 1) {
+          observer.disconnect();
+          callback(products);
+        }
+      });
+      observer.observe(document.getElementById("collection-component-1783555392245"), { childList: true, subtree: true });
+      setTimeout(function () {
+        observer.disconnect();
+        const products = document.querySelectorAll(".shopify-buy__product");
+        if (products.length > 1) callback(products);
+      }, 8000);
+    }
+
+    function getPrice(el) {
+      var priceEl = el.querySelector(".shopify-buy__product-price");
+      if (!priceEl) return 0;
+      var text = priceEl.textContent.replace(/[^0-9.,]/g, "").replace(",", "");
+      return parseFloat(text) || 0;
+    }
+
+    function sortProducts(order) {
+      var container = document.querySelector(".shopify-buy__products");
+      if (!container) return;
+      var products = Array.from(container.querySelectorAll(".shopify-buy__product"));
+      if (products.length < 2) return;
+
+      products.sort(function (a, b) {
+        return order === "price-asc" ? getPrice(a) - getPrice(b) : getPrice(b) - getPrice(a);
+      });
+
+      products.forEach(function (p) { container.appendChild(p); });
+    }
+
+    waitForProducts(function () {
+      sortSelect.addEventListener("change", function () {
+        sortProducts(this.value);
+      });
+    });
+  });
 </script>
