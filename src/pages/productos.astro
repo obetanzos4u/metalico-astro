@@ -80,9 +80,6 @@ function formatPrice(amount, currency) {
               {variant?.sku && (
                 <span class="text-[10px] text-gray-400">SKU: {variant.sku}</span>
               )}
-              {variant?.quantityAvailable !== undefined && variant.quantityAvailable <= 5 && variant.quantityAvailable > 0 && (
-                <span class="text-[10px] text-orange-500">Solo quedan {variant.quantityAvailable}</span>
-              )}
               <a
                 href={shopUrl}
                 target="_blank"

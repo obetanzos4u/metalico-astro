@@ -76,7 +76,6 @@ export async function getCollectionProducts(collectionId, first = 50) {
                   node {
                     id
                     sku
-                    quantityAvailable
                     compareAtPrice { amount currencyCode }
                   }
                 }
