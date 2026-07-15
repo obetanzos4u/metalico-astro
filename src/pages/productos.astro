@@ -44,7 +44,7 @@ function formatPrice(amount, currency) {
         const desc = p.description ? p.description.slice(0, 90) + (p.description.length > 90 ? "…" : "") : "";
         return (
           <div
-            class="product-card border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
+            class="product-card group border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
             data-price={price.amount}
           >
             <a href={shopUrl} target="_blank" rel="noopener noreferrer" class="block">
@@ -84,7 +84,7 @@ function formatPrice(amount, currency) {
                 href={shopUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-1 inline-block w-full text-center border-[2px] border-stone-600 bg-stone-600 text-sm rounded font-medium text-white px-4 py-2 transition-all hover:bg-yellow-400 hover:text-black hover:border-yellow-400 hover:scale-[1.02]"
+                class="mt-1 inline-block w-full text-center border-[2px] border-stone-600 bg-stone-600 text-sm rounded font-medium text-white px-4 py-2 opacity-0 group-hover:opacity-100 transition-all hover:bg-yellow-400 hover:text-black hover:border-yellow-400 hover:scale-[1.02]"
               >
                 Comprar
               </a>
