@@ -61,15 +61,25 @@ export async function getCollectionProducts(collectionId, first = 50) {
               id
               title
               handle
+              description
+              productType
               availableForSale
               images(first: 1) {
                 edges { node { url altText } }
               }
               priceRange {
                 minVariantPrice { amount currencyCode }
+                maxVariantPrice { amount currencyCode }
               }
               variants(first: 1) {
-                edges { node { id } }
+                edges {
+                  node {
+                    id
+                    sku
+                    quantityAvailable
+                    compareAtPrice { amount currencyCode }
+                  }
+                }
               }
             }
           }
