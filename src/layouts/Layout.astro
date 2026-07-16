@@ -4,9 +4,13 @@ import "../styles/global.css";
 export interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
-const { title, description = "Metalico - Maquila metalmecánica e inyección de plástico" } = Astro.props;
+const { title, description = "Metalico - Maquila metalmecánica e inyección de plástico", image = "/og-image.png" } = Astro.props;
+const site = new URL("https://metalico.mx");
+const canonicalURL = new URL(Astro.url.pathname, site).href;
+const ogImageURL = new URL(image, site).href;
 ---
 
 <!doctype html>
@@ -18,11 +22,17 @@ const { title, description = "Metalico - Maquila metalmecánica e inyección de 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://metalico.mx" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:locale" content="es_MX" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
   </head>
   <body>
     <slot />
@@ -112,9 +122,6 @@ const { title, description = "Metalico - Maquila metalmecánica e inyección de 
   .btn-yellow,
   .btn-gray {
     border: 2px solid white !important;
-  }
-  .btn-gray:hover {
-    border-color: #facc15 !important;
   }
   .btn-white {
     border: 2px solid #9ca3af !important;

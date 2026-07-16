@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # config Prettier
 .prettierrc
+public/download.mov
