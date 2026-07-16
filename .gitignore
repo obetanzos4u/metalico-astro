@@ -26,3 +26,6 @@ pnpm-debug.log*
 # config Prettier
 .prettierrc
 public/download.mov
+
+# HyperFrames agent skills
+.agents/
