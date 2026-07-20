@@ -5,7 +5,28 @@ const textColor = `text-${color}`;
 import FooterMenu from "./FooterMenu.astro";
 ---
 
-<style></style>
+<style>
+  @media (max-width: 767px) {
+    :global(.slide-footer a:not(:first-child)) {
+      display: none !important;
+    }
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    function hideExtraButtons(matches) {
+      document.querySelectorAll(".slide-footer").forEach(wrapper => {
+        const links = wrapper.querySelectorAll("a");
+        links.forEach((a, i) => {
+          a.style.display = matches && i > 0 ? "none" : "";
+        });
+      });
+    }
+    hideExtraButtons(mql.matches);
+    mql.addEventListener("change", e => hideExtraButtons(e.matches));
+  });
+</script>
 
 <section
   class="landing-section bg-white min-h-screen w-screen text-center relative"
@@ -37,8 +58,8 @@ import FooterMenu from "./FooterMenu.astro";
       </div>
     </div>
 
-    <footer class="flex flex-col items-center pb-10">
-      <slot name="footer" />
+    <footer class="flex flex-col items-center pb-10 max-md:max-w-[90%] max-md:mx-auto">
+      <div class="slide-footer"><slot name="footer" /></div>
       <!-- Contidionally load footer: -->
       {showFooterContent && <FooterMenu />}
     </footer>
