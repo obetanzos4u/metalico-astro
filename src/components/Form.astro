@@ -538,6 +538,7 @@
   }
 
   .form__label-invalid.anim {
+    position: absolute;
     opacity: 0;
     transform: translateY(-0.5rem);
   }
@@ -571,17 +572,17 @@
     z-index: 1000;
   }
 
-  #proyect_form {
-    grid-column: span 2 / span 2;
-  }
   #w-node-key {
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto;
     grid-template-columns: 1fr;
   }
 
   @media (min-width: 768px) {
     #w-node-key {
       grid-template-columns: 1fr 1fr;
+    }
+    #proyect_form {
+      grid-column: span 2;
     }
   }
   .stack.mod--contact-form {

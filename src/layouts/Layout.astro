@@ -129,4 +129,36 @@ const ogImageURL = new URL(image, site).href;
   .btn-white:hover {
     border-color: white !important;
   }
+
+  .slide-title {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+  .slide-desc {
+    font-size: 14px;
+  }
+  .slide-content {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (max-width: 767px) {
+    .slide-desc {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  @media (min-width: 768px) {
+    .slide-title {
+      font-size: 40px;
+    }
+    .slide-desc {
+      font-size: 16px;
+    }
+    .slide-content {
+      width: 100%;
+    }
+  }
+
 </style>
