@@ -58,7 +58,7 @@ import FooterMenu from "./FooterMenu.astro";
       </div>
     </div>
 
-    <footer class="flex flex-col items-center pb-10 max-md:max-w-[90%] max-md:mx-auto md:mt-16 footer-overlay">
+    <footer class="flex flex-col items-center pb-10 max-md:max-w-[90%] max-md:mx-auto">
       <div class="slide-footer"><slot name="footer" /></div>
       <!-- Contidionally load footer: -->
       {showFooterContent && <FooterMenu />}
