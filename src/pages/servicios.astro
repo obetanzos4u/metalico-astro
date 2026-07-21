@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Servicios — Metalico" description="Servicios de acabados metálicos e inyección de plástico">
+<Layout title="Servicios — Metalico" description="Acabados metálicos, tratamientos superficiales e inyección de plástico — diseño, desarrollo y manufactura">
   <header class="flex items-center justify-between px-[5%] py-4 bg-white border-b border-gray-200">
     <a href="/" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -15,9 +15,59 @@ import Layout from "../layouts/Layout.astro";
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-16">
+    <!-- Hero -->
+    <section class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Servicios Especializados</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Acabados metálicos, tratamientos superficiales e inyección de plástico — diseño, desarrollo y manufactura con más de 20 años de experiencia.</p>
+    </section>
+
+    <!-- Materiales -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2">Materiales que trabajamos</h2>
+      <p class="text-gray-600 mb-8">Procesamos una amplia variedad de metales para adaptarnos a las necesidades de cada proyecto.</p>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+          <span class="text-sm font-semibold text-gray-900">Acero al carbón</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+          <span class="text-sm font-semibold text-gray-900">Acero inoxidable</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+          <span class="text-sm font-semibold text-gray-900">Latón</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+          <span class="text-sm font-semibold text-gray-900">Cobre</span>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+          <span class="text-sm font-semibold text-gray-900">Aceros tratados</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capacidades de corte -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2">Capacidades de corte</h2>
+      <p class="text-gray-600 mb-8">Equipo especializado para procesar piezas en diversos espesores y perfiles.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Corte láser</h3>
+          <p class="text-sm text-gray-600">Capacidad de ½" a Calibre 30, con alta precisión y velocidad en una amplia gama de espesores.</p>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Cortadora</h3>
+          <p class="text-sm text-gray-600">Capacidad de hasta ¼" para cortes precisos en placa y lámina.</p>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Perfiles estructurales</h3>
+          <p class="text-sm text-gray-600">Procesamos Barra 5/4", Ángulo ¼" y Solera ¼" para aplicaciones estructurales y de manufactura.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Acabados Metálicos -->
     <section class="mb-16">
       <h2 class="text-3xl font-bold text-gray-900 mb-2">Acabados Metálicos</h2>
-      <p class="text-gray-600 mb-8">Protegemos y mejoramos tus piezas con procesos industriales certificados.</p>
+      <p class="text-gray-600 mb-8">Protegemos y mejoramos tus piezas con procesos industriales especializados.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
@@ -32,7 +82,7 @@ import Layout from "../layouts/Layout.astro";
           <div class="w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">Galvanizado electrolítico</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Zincado electrolítico</h3>
           <p class="text-sm text-gray-600">Capa fina y uniforme de zinc mediante proceso electrolítico, ideal para piezas con tolerancias precisas.</p>
         </div>
 
@@ -51,9 +101,26 @@ import Layout from "../layouts/Layout.astro";
           <h3 class="text-lg font-semibold text-gray-900 mb-2">Tropicalizado</h3>
           <p class="text-sm text-gray-600">Tratamiento anticorrosivo especial para ambientes de alta humedad, salinidad y condiciones tropicales extremas.</p>
         </div>
+
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+          <div class="w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Pavonado</h3>
+          <p class="text-sm text-gray-600">Tratamiento químico que genera una capa de óxido negro para protección contra la corrosión ligera y acabado estético.</p>
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+          <div class="w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Pintura de aceite</h3>
+          <p class="text-sm text-gray-600">Aplicación de pintura líquida convencional para acabados industriales de alto rendimiento.</p>
+        </div>
       </div>
     </section>
 
+    <!-- Inyección de Plástico -->
     <section class="mb-16">
       <h2 class="text-3xl font-bold text-gray-900 mb-2">Inyección de Plástico</h2>
       <p class="text-gray-600 mb-8">Fabricamos piezas de plástico con altos estándares de calidad y precisión.</p>
@@ -71,8 +138,8 @@ import Layout from "../layouts/Layout.astro";
           <div class="w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
           </div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">Capacidad 100–2000 gr</h3>
-          <p class="text-sm text-gray-600">Moldeo de piezas desde 100 hasta 2000 gramos en máquinas de 112 a 455 toneladas de cierre.</p>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Apertura de 1,025 mm</h3>
+          <p class="text-sm text-gray-600">Máquina de inyección con la mayor capacidad de apertura, permitiendo piezas de gran tamaño — hasta del tamaño de un bote de basura.</p>
         </div>
 
         <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
@@ -85,10 +152,39 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </section>
 
+    <!-- Diferenciadores -->
+    <section class="mb-16 bg-gray-50 rounded-2xl p-8 md:p-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Nuestros diferenciadores</h2>
+      <p class="text-gray-600 mb-8 text-center max-w-xl mx-auto">Más que manufactura, ofrecemos soluciones integrales que agregan valor a cada proyecto.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-yellow-500 text-3xl font-bold mb-2">01</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Diseño</h3>
+          <p class="text-sm text-gray-600">Desarrollamos productos desde la conceptualización hasta el diseño detallado.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-yellow-500 text-3xl font-bold mb-2">02</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Prototipo</h3>
+          <p class="text-sm text-gray-600">Validamos la funcionalidad y el diseño antes de la producción en serie.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-yellow-500 text-3xl font-bold mb-2">03</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Soporte técnico</h3>
+          <p class="text-sm text-gray-600">Acompañamiento especializado durante todo el ciclo del proyecto.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-yellow-500 text-3xl font-bold mb-2">04</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Acompañamiento integral</h3>
+          <p class="text-sm text-gray-600">Desde la planeación hasta la fabricación, implementación y seguimiento.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
     <section class="bg-stone-600 rounded-2xl p-8 md:p-12 text-white text-center">
       <h2 class="text-2xl md:text-3xl font-bold mb-4">¿Necesitas un servicio personalizado?</h2>
       <p class="text-gray-200 mb-6 max-w-xl mx-auto">Nuestro equipo de ingenieros puede asesorarte desde el diseño hasta la producción final.</p>
-      <a href="/#contact" class="btn-yellow inline-block bg-yellow-400 text-black font-semibold px-10 py-3 rounded transition-all hover:bg-yellow-300 hover:scale-[1.02]">
+      <a href="/#contact" class="btn-yellow inline-block bg-yellow-400 text-black font-semibold px-10 py-3 rounded transition-all hover:bg-white hover:text-black hover:border-black hover:border-2 hover:scale-[1.02]">
         Solicitar cotización
       </a>
     </section>
@@ -110,7 +206,7 @@ import Layout from "../layouts/Layout.astro";
         <h3 class="text-white font-semibold text-lg mb-3">Inyección</h3>
         <ul class="space-y-2 text-sm">
           <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Maquila de piezas</li>
-          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>100–2000 gr / 112–455 T</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Apertura 1,025 mm</li>
           <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Tampografía</li>
         </ul>
       </div>
@@ -119,9 +215,9 @@ import Layout from "../layouts/Layout.astro";
         <h3 class="text-white font-semibold text-lg mb-3">Industrias</h3>
         <ul class="space-y-2 text-sm">
           <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Telecomunicaciones</li>
-          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Automotriz</li>
           <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Construcción</li>
-          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Industrial</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Manufactura</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-yellow-400 rounded-full inline-block"></span>Eléctrico / Electrónico</li>
         </ul>
       </div>
 
@@ -130,6 +226,7 @@ import Layout from "../layouts/Layout.astro";
         <ul class="space-y-2 text-sm">
           <li><span class="block text-gray-400 text-xs">Correo</span><a href="mailto:contacto@metalico.mx" class="hover:text-white transition-colors">contacto@metalico.mx</a></li>
           <li><span class="block text-gray-400 text-xs">Teléfono</span><a href="tel:+525581082193" class="hover:text-white transition-colors">55 8108 2193</a></li>
+          <li><span class="block text-gray-400 text-xs">Oficina</span><span class="text-sm">(55) 5243 – 6900 ext. 9301 / ext. 2201</span></li>
           <li><span class="block text-gray-400 text-xs">WhatsApp</span><a href="https://wa.me/525581082193" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">55 8108 2193</a></li>
         </ul>
       </div>
