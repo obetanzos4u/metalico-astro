@@ -3,8 +3,8 @@ import Section from "./Section.astro";
 import "../styles/nft.css";
 ---
 <Section
-  title="Servicios"
-  subtitle="Nuestros ingenieros industriales pueden ayudarte desde el diseño hasta la ingeniería"
+  title="Servicios Especializados"
+  subtitle="Acabados metálicos, tratamientos superficiales e inyección de plástico"
   subtitleExtraClass=""
   color="white"
   id="service"
@@ -12,16 +12,25 @@ import "../styles/nft.css";
   <div slot="contain">
     <div class="nft">
       <div class="main">
-        <div class="tokenInfo">
-          <div class="duration">
-            <p>
-              Contamos con servicios de acabados e inyección de plástico<br />
-              ACABADOS: <br />• Galvanizado por inmersión en caliente
-              • Galvanizado electrolítico • Tropicalizado • Pintura electrostática
-              • Pintura de aceite <br />
-              INYECCIÓN: <br />• Maquila de piezas de plástico • De 100 a 2000 gr
-              de 112 a 455 T • Tampografía
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left text-sm">
+          <div>
+            <strong class="text-white/90 text-base">Acabados metálicos:</strong><br />
+            <span class="text-[#b6a0ff]">
+              • Galvanizado por inmersión en caliente<br />
+              • Zincado electrolítico<br />
+              • Tropicalizado<br />
+              • Pavonado<br />
+              • Pintura electrostática<br />
+              • Pintura de aceite
+            </span>
+          </div>
+          <div>
+            <strong class="text-white/90 text-base">Inyección de plástico:</strong><br />
+            <span class="text-[#b6a0ff]">
+              • Maquila de piezas de plástico<br />
+              • Máquina con apertura de hasta 1,025 mm<br />
+              • Tampografía
+            </span>
           </div>
         </div>
       </div>

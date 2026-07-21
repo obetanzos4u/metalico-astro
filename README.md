@@ -14,6 +14,8 @@
 
 _METALiCO nació hace más de 20 años con un propósito claro: atender las necesidades del sector de las telecomunicaciones mediante soluciones confiables, funcionales e innovadoras._ 
 
+_Más de 450 proyectos entregados._
+
 _Con el paso del tiempo, nuestra experiencia, capacidad técnica y compromiso con cada proyecto nos impulsaron a ampliar nuestros horizontes. Hoy, METALiCO ha trascendido el mercado de las telecomunicaciones para participar en nuevos sectores, desarrollando soluciones a la medida, convirtiendo ideas en proyectos y creando productos innovadores que responden a los retos de nuestros clientes._ 
 
 _Este crecimiento ha sido posible gracias al talento y la dedicación de un equipo conformado por más de 80 colaboradores, quienes aportan sus conocimientos, experiencia y creatividad para llevar cada proyecto desde su conceptualización hasta su implementación._ 
