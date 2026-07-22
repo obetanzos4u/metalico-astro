@@ -64,7 +64,7 @@ function formatPrice(amount, currency) {
                 <span class="text-[10px] uppercase tracking-wider text-yellow-600 font-semibold">{p.productType}</span>
               )}
               <a href={shopUrl} target="_blank" rel="noopener noreferrer">
-                <h3 class="text-sm text-gray-800 font-semibold line-clamp-2 hover:text-yellow-600 transition-colors">{p.title}</h3>
+                <h3 class="text-sm text-gray-800 font-semibold line-clamp-2 hover:text-yellow-600 transition-colors">{p.title.split(' ').slice(1).join(' ') || p.title}</h3>
               </a>
               {desc && (
                 <p class="text-xs text-gray-500 line-clamp-2">{desc}</p>
