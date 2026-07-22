@@ -3,18 +3,14 @@
   max-width: 850px;
   margin: auto;
   border: 1px solid #ffffff22;
-  background-color: #282c34;
-  background: linear-gradient(
-    0deg,
-    rgba(40, 44, 52, 1) 0%,
-    rgba(17, 0, 32, 0.5) 100%
-  );
+  background: linear-gradient(#0c0c0c80 0%, #282c34 100%);
   box-shadow: 0 7px 8px 5px #00000088;
   border-radius: 0.7rem;
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
   overflow: hidden;
   transition: 0.5s all;
+  color: #9accff;
 }
 .nft .main {
   display: flex;
@@ -24,7 +20,6 @@
 }
 .nft .description {
   margin: 0.5rem 0;
-  color: #a89ec9;
 }
 .nft .tokenInfo {
   display: flex;
@@ -35,7 +30,6 @@
   display: flex;
   min-height: 220px;
   align-items: center;
-  color: #b6a0ff;
   margin-right: 0.2rem;
 }
 .nft::before {
