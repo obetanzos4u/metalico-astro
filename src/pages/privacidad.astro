@@ -9,6 +9,7 @@ import Layout from "../layouts/Layout.astro";
   <div class="max-w-3xl mx-auto px-4 py-12 text-gray-800">
     <a
       href="/"
+      onclick="event.preventDefault(); history.back()"
       class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors mb-8"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
