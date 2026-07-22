@@ -6,7 +6,7 @@ import Layout from "../layouts/Layout.astro";
   <section class="relative h-[50vh] min-h-[350px] max-h-[420px] flex items-center justify-center overflow-hidden">
     <img src="bg-machine.avif" alt="" class="absolute inset-0 h-full w-full object-cover object-center" />
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
-    <header class="absolute top-0 left-0 right-0 flex items-center justify-between px-[5%] py-4 z-10">
+    <header class="absolute top-0 left-0 right-0 flex items-center justify-between px-[5%] py-4 z-10 bg-niebla-700">
       <a href="/" onclick="event.preventDefault(); history.back()" class="flex items-center gap-2 text-sm font-medium text-gray-200 hover:text-white transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -184,7 +184,7 @@ import Layout from "../layouts/Layout.astro";
     </section>
 
     <!-- CTA -->
-    <section class="bg-stone-600 rounded-2xl p-8 md:p-12 text-white text-center">
+    <section class="bg-niebla-700 rounded-2xl p-8 md:p-12 text-white text-center">
       <h2 class="text-2xl md:text-3xl font-bold mb-4">¿Necesitas un servicio personalizado?</h2>
       <p class="text-gray-200 mb-6 max-w-xl mx-auto">Nuestro equipo de ingenieros puede asesorarte desde el diseño hasta la producción final.</p>
       <a href="/#contact" class="btn-yellow inline-block bg-yellow-400 text-black font-semibold px-10 py-3 rounded transition-all hover:bg-white hover:text-black hover:border-black hover:border-2 hover:scale-[1.02]">
@@ -197,7 +197,7 @@ import Layout from "../layouts/Layout.astro";
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
-  <footer class="bg-stone-600 text-gray-300">
+  <footer class="bg-niebla-700 text-gray-300">
     <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <div>
         <h3 class="text-white font-semibold text-lg mb-3">Acabados</h3>
