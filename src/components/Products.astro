@@ -15,7 +15,7 @@ const shopProducts = await getProductsByHandles(productHandles);
 const categorias = shopProducts.map((p) => {
   const img = p.images?.edges?.[0]?.node?.url ?? "";
   return {
-    titulo: p.title,
+    titulo: p.title.split(' ').slice(2).join(' ') || p.title,
     tipos: p.description ? [p.description.slice(0, 100)] : [],
     img,
     link: `https://${storeDomain}/products/${p.handle}`,
@@ -50,7 +50,7 @@ const categorias = shopProducts.map((p) => {
             />
           </div>
           <div class="p-4 flex flex-col gap-1.5">
-            <h3 class="text-base md:text-lg font-semibold leading-tight">{cat.titulo}</h3>
+            <h3 class="text-sm md:text-base font-semibold leading-tight">{cat.titulo}</h3>
             <ul class="text-xs text-desc space-y-0.5">
               {cat.tipos.map((t) => <li class="before:content-['-'] before:mr-1.5 before:text-yellow-400">{t}</li>)}
             </ul>
