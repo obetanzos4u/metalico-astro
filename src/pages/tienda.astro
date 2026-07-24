@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { getCollectionProducts } from "../lib/shopify.js";
 
 const storeDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
-const COLLECTION_ID = "496485990703";
+const COLLECTION_ID = "504475058479";
 const products = await getCollectionProducts(COLLECTION_ID, 50);
 
 function formatPrice(amount, currency) {
