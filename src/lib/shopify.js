@@ -50,6 +50,22 @@ export async function getProducts(first = 20) {
   return data.products.edges.map(edge => edge.node);
 }
 
+export async function getProductsByHandles(handles) {
+  const aliasQueries = handles
+    .map(
+      (h, i) => `
+    p${i}: productByHandle(handle: "${h}") {
+      id title handle description
+      images(first: 1) { edges { node { url altText } } }
+      priceRange { minVariantPrice { amount currencyCode } }
+    }
+  `
+    )
+    .join("\n");
+  const data = await shopifyFetch({ query: `query { ${aliasQueries} }` });
+  return handles.map((_, i) => data[`p${i}`]);
+}
+
 export async function getCollectionProducts(collectionId, first = 50) {
   const query = `
     query getCollectionProducts($id: ID!, $first: Int!) {

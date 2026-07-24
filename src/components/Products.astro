@@ -1,30 +1,26 @@
 ---
-const categorias = [
-  {
-    titulo: "Herrajes para Redes Aéreas",
-    tipos: ["Aéreo accesorios", "Cruceta"],
-    img: "herraje-metalico.avif",
-    link: "/tienda",
-  },
-  {
-    titulo: "Brazos para Instalación Aérea",
-    tipos: ['Brazo "D"', 'Brazo "J" ADSS', "Brazo tangente"],
-    img: "extension-metalico.avif",
-    link: "/tienda",
-  },
-  {
-    titulo: "Cables Mensajeros",
-    tipos: ['Cable mensajero 3/16"', 'Cable mensajero 1/4"', 'Cable mensajero 3/8"'],
-    img: "cable-metalico.avif",
-    link: "/tienda",
-  },
-  {
-    titulo: "Bases y Soportes",
-    tipos: ["Bajada base uso exterior"],
-    img: "base-metalico.avif",
-    link: "/tienda",
-  },
+import { getProductsByHandles } from "../lib/shopify.js";
+
+const storeDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
+
+const productHandles = [
+  "portabobinas-en-vertical-para-cable-drop-marca-metalico-pbvcd0724x24",
+  "soporte-para-bobinas-7-toneladas-ajustable-marca-metalico-sopb05-07p",
+  "polea-para-cable-marca-metalico-pol305a",
+  "grapa-reunidora-tipo-o-40-x-100-mm-marca-metalico-gro40x100",
 ];
+
+const shopProducts = await getProductsByHandles(productHandles);
+
+const categorias = shopProducts.map((p) => {
+  const img = p.images?.edges?.[0]?.node?.url ?? "";
+  return {
+    titulo: p.title,
+    tipos: p.description ? [p.description.slice(0, 100)] : [],
+    img,
+    link: `https://${storeDomain}/products/${p.handle}`,
+  };
+});
 ---
 
 <section
