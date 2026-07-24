@@ -4,7 +4,7 @@ import { getCollectionProducts } from "../lib/shopify.js";
 
 const storeDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 const COLLECTION_ID = "504475058479";
-const products = await getCollectionProducts(COLLECTION_ID, 50);
+const products = await getCollectionProducts(COLLECTION_ID, 100);
 
 function formatPrice(amount, currency) {
   return new Intl.NumberFormat("es-MX", {
