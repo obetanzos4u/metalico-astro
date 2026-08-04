@@ -49,7 +49,16 @@
         </div>
         <div class="contact-info-wrap">
           <span class="contact-title">Contacto directo:</span>
-          <span class="contact-mail">contacto@metalico.mx</span>
+          <div class="contact-mail-row">
+            <span class="contact-mail">contacto@metalico.mx</span>
+            <button id="copy-email-btn" class="copy-btn" aria-label="Copiar correo" title="Copiar correo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span id="copy-feedback" class="copy-feedback">¡Copiado!</span>
+            </button>
+          </div>
           <!--
           <span class="contact-phone">
             <a href="tel:+525581082193" class="contact-link">Tel: 55 8108 2193</a>
@@ -452,6 +461,46 @@
     overflow: hidden;
     transform: translate(0);
   }
+  .contact-mail-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    color: inherit;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+  .copy-feedback {
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    white-space: nowrap;
+    background: var(--yellow);
+    color: var(--blue-dark);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .copy-feedback.is-showing {
+    opacity: 1;
+  }
 </style>
 
 <script>
@@ -467,5 +516,30 @@
       });
     }, { threshold: 0.3 });
     observer.observe(el);
+  }
+</script>
+
+<script>
+  const copyBtn = document.querySelector("#copy-email-btn");
+  const emailEl = document.querySelector(".contact-mail");
+  const feedback = document.querySelector("#copy-feedback");
+  if (copyBtn && emailEl) {
+    copyBtn.addEventListener("click", async () => {
+      const email = emailEl.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = email;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      if (feedback) {
+        feedback.classList.add("is-showing");
+        setTimeout(() => feedback.classList.remove("is-showing"), 2000);
+      }
+    });
   }
 </script>
