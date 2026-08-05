@@ -30,6 +30,7 @@
     <section class="columns__col mod--contact-video">
       <div class="contact__video-address">
         <div class="contact-video">
+          <!--
           <div class="hf-frame">
             <div class="hf-frame-bg"></div>
             <div class="hf-streak hf-streak-1"></div>
@@ -46,6 +47,8 @@
             <div class="hf-sweep-2"></div>
             <img src="/logo_metalico.avif" alt="METALICO" class="hf-logo" />
           </div>
+          -->
+          <video class="contact-video-el" src="/Bg-video.mp4" autoplay muted loop playsinline></video>
         </div>
         <div class="contact-info-wrap">
           <span class="contact-title">Contacto directo:</span>
@@ -295,6 +298,12 @@
     height: auto;
     flex-shrink: 0;
     display: block;
+  }
+  .contact-video-el {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
   }
   .hf-frame {
     position: relative;
