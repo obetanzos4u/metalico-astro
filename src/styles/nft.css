@@ -1,8 +1,7 @@
 .nft {
   user-select: none;
   max-width: 950px;
-  --nft-padding: 1rem;
-  padding: var(--nft-padding);
+  padding: 2rem;
   margin: auto;
   border: 1px solid #ffffff22;
   background: linear-gradient(#0c0c0c80 0%, #282c34 100%);
@@ -56,4 +55,10 @@
 }
 .company-description p {
   margin-bottom: 1rem;
+}
+
+@media (max-width: 767px) {
+  .card-description {
+    padding: 1rem;
+  }
 }
