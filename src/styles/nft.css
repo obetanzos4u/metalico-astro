@@ -1,7 +1,8 @@
 .nft {
   user-select: none;
   max-width: 950px;
-  padding: 2rem;
+  --nft-padding: 1rem;
+  padding: var(--nft-padding);
   margin: auto;
   border: 1px solid #ffffff22;
   background: linear-gradient(#0c0c0c80 0%, #282c34 100%);
