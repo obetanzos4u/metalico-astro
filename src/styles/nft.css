@@ -59,7 +59,10 @@
 
 @media (max-width: 767px) {
   .nft {
-    padding: 1rem 0;
+    padding: 1.5rem;
+  }
+  .nft .main {
+    padding: 0rem;
   }
   .card-description {
     padding: 2rem;
