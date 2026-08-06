@@ -7,3 +7,12 @@
   --color-desc: #e7e7e7;
   --color-metal-gray: #313334;
 }
+
+.btn-sep {
+  gap: 1.75rem;
+}
+@media (max-width: 767px) {
+  .btn-sep {
+    gap: 1rem;
+  }
+}
