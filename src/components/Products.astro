@@ -1,26 +1,38 @@
 ---
-import { getProductsByHandles } from "../lib/shopify.js";
-
-const storeDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
-
-const productHandles = [
-  "portabobinas-en-vertical-para-cable-drop-marca-metalico-pbvcd0724x24",
-  "soporte-para-bobinas-7-toneladas-ajustable-marca-metalico-sopb05-07p",
-  "polea-para-cable-marca-metalico-pol305a",
-  "grapa-reunidora-tipo-o-40-x-100-mm-marca-metalico-gro40x100",
+const categorias = [
+  {
+    titulo: "Portabobinas en vertical para cable drop",
+    tipos: [
+      "Descripción: Portabobinas en vertical para cable drop Características: Optimice sus operaciones de d",
+    ],
+    img: "/products/portabobinas.avif",
+    link: "https://22d41a.myshopify.com/products/portabobinas-en-vertical-para-cable-drop-marca-metalico-pbvcd0724x24",
+  },
+  {
+    titulo: "Soporte para bobinas 7 toneladas ajustable",
+    tipos: [
+      "Descripción: Soporte para bobinas de 7 toneladas con altura ajustable por medio de pedal. Unidad de",
+    ],
+    img: "/products/soporte.avif",
+    link: "https://22d41a.myshopify.com/products/soporte-para-bobinas-7-toneladas-ajustable-marca-metalico-sopb05-07p",
+  },
+  {
+    titulo: "Polea para cable",
+    tipos: [
+      'Descripción: Polea de 12" para instalación de cable. Características: Acero al carbón, galvanizado e',
+    ],
+    img: "/products/polea.avif",
+    link: "https://22d41a.myshopify.com/products/polea-para-cable-marca-metalico-pol305a",
+  },
+  {
+    titulo: 'Grapa reunidora tipo "O" 40 x 100 mm',
+    tipos: [
+      'Descripción: Grapa reunidora tipo "O" 40 x 100 mm para embobinado o lasheado de mensajero. Caracterí',
+    ],
+    img: "/products/grapa.avif",
+    link: "https://22d41a.myshopify.com/products/grapa-reunidora-tipo-o-40-x-100-mm-marca-metalico-gro40x100",
+  },
 ];
-
-const shopProducts = await getProductsByHandles(productHandles);
-
-const categorias = shopProducts.map((p) => {
-  const img = p.images?.edges?.[0]?.node?.url ?? "";
-  return {
-    titulo: p.title.split(' ').slice(2).join(' ') || p.title,
-    tipos: p.description ? [p.description.slice(0, 100)] : [],
-    img,
-    link: `https://${storeDomain}/products/${p.handle}`,
-  };
-});
 ---
 
 <section
