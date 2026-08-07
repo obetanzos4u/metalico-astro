@@ -63,7 +63,20 @@ Ahorro de carga en **dispositivos móviles** (el desktop mantiene las imágenes 
 
 ### Resultado
 
-- Lighthouse: **100** en Performance/Accesibilidad/SEO por escritorio; **98 → 100** móvil tras este commit. Reporte médico por Francisco de Imagen delivery (−232 KiB) y cadena crítica LCP de 585 ms (recortada con woff2).
+- Lighthouse **final**: **100/100** en los 4 apartados (Performance, Accesibilidad, Best Practices, SEO), **desktop y móvil**.
+- Recorrido móvil: 98 → 100. Desktop: 98 → 100.
+- Commits: `34369e0` (móvil base: srcset móvil, productos 480, CLS, woff2), `b746612` (desktop: variante 1440, preconnect jsdelivr, preload gotham-bold), `794c6a8` (móvil: variantes 800px para cubrir el hueco de DPR).
+
+### Prioridad responsive final (srcset)
+
+| Ancho | Archivo | Peso |
+|-------|---------|------|
+| 480w | `home-mobile.avif` / `bg-steel-black-mobile.avif` | 22.7 / 17 KB |
+| 800w | `home-800.avif` / `bg-steel-black-800.avif` | 53.0 / 35.9 KB |
+| 1440w | `home-1440.avif` | 122.5 KB |
+| 1760/1920w | `home.avif` / `bg-steel-black.avif` (máxima calidad) | 191 / 179 KB |
+
+- Con `sizes="100vw"` el móvil (~721px necesarios por DPR 1.75) elige la 800; el escritorio la 1440/1760 o 1920. Esto evitó que el móvil bajara la variante de desktop (el hueco de DPR).
 
 ## Estado actual de `public/`
 
