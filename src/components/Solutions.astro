@@ -59,24 +59,9 @@ import "../styles/nft.css";
 </Section>
 
 <script>
-  function isEdge() {
-    if (
-      navigator.userAgent.indexOf("Edge") > -1 ||
-      navigator.userAgent.indexOf("Edg") > -1
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   let imageElement = document.querySelector(
     "#bg-image-solutions",
-  ) as HTMLImageElement; // TypeScript
+  ) as HTMLImageElement;
 
-  if (isEdge()) {
-    imageElement.src = "service.webp";
-  } else {
-    imageElement.src = "service.avif";
-  }
+  imageElement.src = "service.avif";
 </script>
