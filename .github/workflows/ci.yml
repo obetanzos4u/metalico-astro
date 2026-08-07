@@ -9,6 +9,13 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_SHOPIFY_STORE_DOMAIN: ${{ secrets.PUBLIC_SHOPIFY_STORE_DOMAIN }}
+      PUBLIC_SHOPIFY_STOREFRONT_TOKEN: ${{ secrets.PUBLIC_SHOPIFY_STOREFRONT_TOKEN }}
+      PUBLIC_SHOPIFY_API_VERSION: ${{ secrets.PUBLIC_SHOPIFY_API_VERSION }}
+      PUBLIC_EMAILJS_PUBLIC_KEY: ${{ secrets.PUBLIC_EMAILJS_PUBLIC_KEY }}
+      PUBLIC_EMAILJS_SERVICE_ID: ${{ secrets.PUBLIC_EMAILJS_SERVICE_ID }}
+      PUBLIC_EMAILJS_TEMPLATE_ID: ${{ secrets.PUBLIC_EMAILJS_TEMPLATE_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,14 +26,7 @@ jobs:
       - run: npm run lint
       - name: Verificar variables de entorno
         run: |
-          test -n "$PUBLIC_SHOPIFY_STORE_DOMAIN" || { echo "::error::Falta PUBLIC_SHOPIFY_STORE_DOMAIN (Actions variable). Configurala en Settings -> Secrets and variables -> Actions"; exit 1; }
-          test -n "$PUBLIC_SHOPIFY_STOREFRONT_TOKEN" || { echo "::error::Falta PUBLIC_SHOPIFY_STOREFRONT_TOKEN (Actions variable). Configurala en Settings -> Secrets and variables -> Actions"; exit 1; }
-          test -n "$PUBLIC_SHOPIFY_API_VERSION" || { echo "::error::Falta PUBLIC_SHOPIFY_API_VERSION (Actions variable). Configurala en Settings -> Secrets and variables -> Actions"; exit 1; }
+          test -n "$PUBLIC_SHOPIFY_STORE_DOMAIN" || { echo "::error::Falta PUBLIC_SHOPIFY_STORE_DOMAIN (Actions secret). Configurala en Settings -> Secrets and variables -> Actions"; exit 1; }
+          test -n "$PUBLIC_SHOPIFY_STOREFRONT_TOKEN" || { echo "::error::Falta PUBLIC_SHOPIFY_STOREFRONT_TOKEN (Actions secret). Configurala en Settings -> Secrets and variables -> Actions"; exit 1; }
+          test -n "$PUBLIC_SHOPIFY_API_VERSION" || { echo "::error::Falta PUBLIC_SHOPIFY_API_VERSION (Actions secret). Configurala en Settings -> Secrets and variables -> Actions"; exit 1; }
       - run: npm run build
-        env:
-          PUBLIC_SHOPIFY_STORE_DOMAIN: ${{ vars.PUBLIC_SHOPIFY_STORE_DOMAIN }}
-          PUBLIC_SHOPIFY_STOREFRONT_TOKEN: ${{ vars.PUBLIC_SHOPIFY_STOREFRONT_TOKEN }}
-          PUBLIC_SHOPIFY_API_VERSION: ${{ vars.PUBLIC_SHOPIFY_API_VERSION }}
-          PUBLIC_EMAILJS_PUBLIC_KEY: ${{ vars.PUBLIC_EMAILJS_PUBLIC_KEY }}
-          PUBLIC_EMAILJS_SERVICE_ID: ${{ vars.PUBLIC_EMAILJS_SERVICE_ID }}
-          PUBLIC_EMAILJS_TEMPLATE_ID: ${{ vars.PUBLIC_EMAILJS_TEMPLATE_ID }}
