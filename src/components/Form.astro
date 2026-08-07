@@ -631,7 +631,9 @@
 ></script>
 <script type="text/javascript">
   (function () {
-    emailjs.init("SsrXxV23cwZnkbb0C");
+    emailjs.init(
+      import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || "SsrXxV23cwZnkbb0C",
+    );
   })();
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -643,8 +645,10 @@
       btn.textContent = "Enviando...";
 
       const form = document.getElementById("form");
-      const serviceID = "service_t2idvpt";
-      const templateID = "template_b4pxi59";
+      const serviceID =
+        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || "service_t2idvpt";
+      const templateID =
+        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || "template_b4pxi59";
 
       const msg = document.getElementById("form-message");
       msg.className = "form-message";
@@ -656,7 +660,7 @@
           msg.classList.add("success");
           form.reset();
         },
-        (err) => {
+        (_err) => {
           btn.textContent = "Enviar mensaje";
           msg.textContent = "Error al enviar. Intenta de nuevo.";
           msg.classList.add("error");
@@ -671,11 +675,9 @@
     // Este código asume que tienes un elemento en tu HTML para mostrar el nombre del archivo
     // Por ejemplo, un span con id="nombreArchivo"
     document.getElementById("archivo").onchange = function (e) {
-      // Obtiene el nombre del archivo seleccionado
-      var fileName = e.target.files[0].name;
-      // Actualiza el contenido del elemento con el nuevo nombre de archivo
-      document.getElementById("nombreArchivo").textContent =
-        fileName || "Selecciona tu archivo";
+      var fileName = e.target.files[0]?.name;
+      var el = document.getElementById("nombreArchivo");
+      if (el) el.textContent = fileName || "Selecciona tu archivo";
     };
 
     // Agregar la clase “active” al label del formulario cuando el campo de correo esté activo, puedes usar JavaScript para detectar el enfoque (focus) y desenfoque (blur) del campo de entrada.
@@ -743,17 +745,17 @@
         toggleArrow.classList.remove("w--open");
       });
     });
-  });
 
-  document.getElementById("message").addEventListener("input", function () {
-    const maxChars = 350;
-    const textArea = this;
-    const charCount = document.getElementById("wordCount");
+    const message = document.getElementById("message");
+    message.addEventListener("input", function () {
+      const maxChars = 350;
+      const charCount = document.getElementById("wordCount");
 
-    if (textArea.value.length > maxChars) {
-      textArea.value = textArea.value.substring(0, maxChars);
-    }
+      if (message.value.length > maxChars) {
+        message.value = message.value.substring(0, maxChars);
+      }
 
-    charCount.textContent = `${textArea.value.length} / ${maxChars} caracteres`;
+      charCount.textContent = `${message.value.length} / ${maxChars} caracteres`;
+    });
   });
 </script>
