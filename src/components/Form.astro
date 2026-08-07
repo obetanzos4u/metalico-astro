@@ -1,3 +1,12 @@
+---
+const emailjsPublicKey =
+  import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || "SsrXxV23cwZnkbb0C";
+const emailjsServiceId =
+  import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || "service_t2idvpt";
+const emailjsTemplateId =
+  import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || "template_b4pxi59";
+---
+
 <div class="container-form">
   <form
     id="form"
@@ -638,10 +647,13 @@
   type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
 ></script>
-<script type="text/javascript">
+<script
+  type="text/javascript"
+  define:vars={{ emailjsPublicKey, emailjsServiceId, emailjsTemplateId }}
+>
   (function () {
     emailjs.init(
-      import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || "SsrXxV23cwZnkbb0C",
+      emailjsPublicKey,
     );
   })();
 
@@ -654,10 +666,8 @@
       btn.textContent = "Enviando...";
 
       const form = document.getElementById("form");
-      const serviceID =
-        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || "service_t2idvpt";
-      const templateID =
-        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || "template_b4pxi59";
+      const serviceID = emailjsServiceId;
+      const templateID = emailjsTemplateId;
 
       const msg = document.getElementById("form-message");
       msg.className = "form-message";
