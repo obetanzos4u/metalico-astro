@@ -26,6 +26,20 @@ import Layout from "../layouts/Layout.astro";
       <strong>Última actualización:</strong> julio 2026
     </p>
 
+    <div class="flex justify-end mb-6">
+      <button
+        id="copy-policy"
+        type="button"
+        class="inline-flex items-center gap-2 text-sm font-medium text-white bg-metal-gray hover:bg-yellow-400 hover:text-black rounded px-4 py-2 transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h8a2 2 0 012 2v8a2 2 0 01-2 2H8m4 1v-2a2 2 0 012-2h2" />
+        </svg>
+        <span id="copy-policy-label">Copiar texto</span>
+      </button>
+    </div>
+
+    <div id="policy-text">
     <p class="mb-6">
       En <strong>Metalico</strong> (en adelante, "el Sitio"), respetamos tu privacidad
       y estamos comprometidos a proteger los datos personales que puedas
@@ -159,5 +173,34 @@ import Layout from "../layouts/Layout.astro";
       <li><strong>WhatsApp:</strong> <a href="https://wa.me/525581082193" target="_blank" rel="noopener noreferrer" class="text-blue-700 underline hover:no-underline">55 8108 2193</a></li>
       <li><strong>A través de nuestro formulario:</strong> <a href="/#contact" class="text-blue-700 underline hover:no-underline">Contacto</a></li>
     </ul>
+    </div>
+
+    <script>
+      const copyBtn = document.querySelector("#copy-policy");
+      const copyLabel = document.querySelector("#copy-policy-label");
+
+      copyBtn.addEventListener("click", async () => {
+        const text = document.querySelector("#policy-text").innerText;
+
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          textarea.remove();
+        }
+
+        copyLabel.textContent = "¡Texto copiado!";
+
+        setTimeout(() => {
+          copyLabel.textContent = "Copiar texto";
+        }, 2000);
+      });
+    </script>
   </div>
 </Layout>
