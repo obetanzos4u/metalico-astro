@@ -82,14 +82,14 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
               )}
               <div class="flex items-baseline gap-2 mt-0.5">
                 {variant?.compareAtPrice && parseFloat(variant.compareAtPrice.amount) > parseFloat(price.amount) && (
-                  <span class="text-xs text-gray-400 line-through">{formatPrice(variant.compareAtPrice.amount, variant.compareAtPrice.currencyCode)}</span>
+                  <span class="text-xs text-gray-500 line-through">{formatPrice(variant.compareAtPrice.amount, variant.compareAtPrice.currencyCode)}</span>
                 )}
                 <p class="text-base font-bold" style="color:#ff8308">
                   {formatPrice(price.amount, price.currencyCode)}
                 </p>
               </div>
               {variant?.sku && (
-                <span class="text-[10px] text-gray-400">SKU: {variant.sku}</span>
+                <span class="text-[10px] text-gray-500">SKU: {variant.sku}</span>
               )}
               <a
                 href={shopUrl}
