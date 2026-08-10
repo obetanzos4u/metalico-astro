@@ -8,12 +8,12 @@ const products = await getCollectionProducts(COLLECTION_ID, 100);
 
 function formatPrice(amount, currency) {
   const value = parseFloat(amount);
-  return `${new Intl.NumberFormat("es-MX", {
+  return new Intl.NumberFormat("es-MX", {
     style: "currency",
     currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
-  }).format(value)} ${currency}`;
+  }).format(value);
 }
 
 const tagCounts = new Map();
@@ -83,12 +83,13 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
               {desc && (
                 <p class="text-xs text-gray-500 line-clamp-2">{desc}</p>
               )}
-              <div class="flex items-baseline gap-2 mt-0.5">
+              <div class="flex items-center gap-2 mt-0.5">
                 {variant?.compareAtPrice && parseFloat(variant.compareAtPrice.amount) > parseFloat(price.amount) && (
-                  <span class="text-xs text-gray-500 line-through">{formatPrice(variant.compareAtPrice.amount, variant.compareAtPrice.currencyCode)}</span>
+                  <span class="text-xs text-gray-500 line-through">{formatPrice(variant.compareAtPrice.amount, variant.compareAtPrice.currencyCode)} <span class="text-[0.5rem]">{variant.compareAtPrice.currencyCode}</span></span>
                 )}
-                <p class="text-base font-bold" style="color:#ff8308">
+                <p class="text-base font-bold flex items-center gap-1" style="color:#ff8308">
                   {formatPrice(price.amount, price.currencyCode)}
+                  <span class="text-[0.5rem] font-medium text-orange-400">{price.currencyCode}</span>
                 </p>
               </div>
               {variant?.sku && (
