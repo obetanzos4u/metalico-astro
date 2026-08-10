@@ -79,6 +79,7 @@ export async function getCollectionProducts(collectionId, first = 50) {
               handle
               description
               productType
+              tags
               availableForSale
               images(first: 1) {
                 edges { node { url altText } }

@@ -12,6 +12,14 @@ function formatPrice(amount, currency) {
     currency,
   }).format(amount);
 }
+
+const tagCounts = new Map();
+for (const p of products) {
+  for (const t of p.tags ?? []) {
+    tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  }
+}
+const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
 ---
 
 <Layout title="Tienda — Metalico" description="Explora nuestros productos manufacturados">
@@ -27,15 +35,17 @@ function formatPrice(amount, currency) {
   </header>
 
   <main class="max-w-7xl mx-auto px-4 pb-16">
-    <div class="flex justify-end mb-4">
-      <select id="sort-select" class="text-sm border border-gray-300 rounded px-3 py-1.5 text-gray-700 bg-white cursor-pointer">
-        <option value="default">Ordenar por</option>
-        <option value="price-asc">Precio: menor a mayor</option>
-        <option value="price-desc">Precio: mayor a menor</option>
-      </select>
-    </div>
+    <div class="flex flex-col lg:flex-row gap-8">
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-end mb-4">
+          <select id="sort-select" class="text-sm border border-gray-300 rounded px-3 py-1.5 text-gray-700 bg-white cursor-pointer">
+            <option value="default">Ordenar por</option>
+            <option value="price-asc">Precio: menor a mayor</option>
+            <option value="price-desc">Precio: mayor a menor</option>
+          </select>
+        </div>
 
-    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
       {products.map((p) => {
         const price = p.priceRange.minVariantPrice;
         const image = p.images.edges[0]?.node;
@@ -46,6 +56,7 @@ function formatPrice(amount, currency) {
           <div
             class="product-card group border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
             data-price={price.amount}
+            data-tags={(p.tags ?? []).map((t) => t.toLowerCase()).join(",")}
           >
             <a href={shopUrl} target="_blank" rel="noopener noreferrer" class="block">
               <div class="relative pt-[75%] bg-gray-50">
@@ -100,6 +111,48 @@ function formatPrice(amount, currency) {
     {products.length === 0 && (
       <p class="text-center text-gray-500 py-16">No hay productos disponibles en este momento.</p>
     )}
+
+    <p id="no-matches" class="hidden text-center text-gray-500 py-16">
+      No hay productos que cumplan con los criterios seleccionados.
+    </p>
+    </div>
+
+    <aside class="w-full lg:w-72 lg:shrink-0 lg:self-start">
+      <details
+        id="filter-details"
+        class="rounded-xl border border-slate-200 bg-white overflow-hidden"
+      >
+        <summary
+          class="cursor-pointer list-none flex items-center justify-between px-4 py-3 bg-slate-50 font-semibold text-sm text-slate-800 select-none lg:pointer-events-none lg:cursor-default"
+        >
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4h18l-7 8v6l-4 2v-8L3 4z"/></svg>
+            Filtrar por etiqueta
+          </span>
+          <span id="filter-count" class="text-[11px] font-normal text-slate-500 lg:hidden">▼</span>
+          <span id="filter-count-desk" class="text-[11px] font-normal text-slate-500 hidden lg:inline"></span>
+        </summary>
+        <div class="px-4 py-3 space-y-2 border-t border-slate-100">
+          <p class="text-[11px] text-slate-400">Los productos deben cumplir todos los tags seleccionados</p>
+          {allTags.map(([t, count]) => (
+            <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+              <input
+                type="checkbox"
+                value={t.toLowerCase()}
+                class="tag-check h-4 w-4 rounded border-slate-300 focus:ring-[#ff8308]"
+                style="accent-color:#ff8308"
+              />
+              <span class="flex-1">{t}</span>
+              <span class="text-xs text-slate-400">({count})</span>
+            </label>
+          ))}
+          {allTags.length === 0 && (
+            <p class="text-xs text-slate-400">No hay etiquetas disponibles.</p>
+          )}
+        </div>
+      </details>
+    </aside>
+  </div>
   </main>
 
   <button id="btn-subir" class="fixed bottom-10 right-8 z-50 bg-yellow-400 text-black w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-2xl font-bold transition-all duration-300 hover:bg-yellow-300 hover:scale-110 opacity-0 pointer-events-none" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Volver arriba">
@@ -167,18 +220,55 @@ function formatPrice(amount, currency) {
 
   const sortSelect = document.getElementById("sort-select");
   const grid = document.getElementById("product-grid");
+  const noMatches = document.getElementById("no-matches");
+  const checkboxes = Array.from(document.querySelectorAll(".tag-check"));
+  const filterCount = document.getElementById("filter-count-desk");
+  const cards = Array.from(grid.querySelectorAll(".product-card"));
+  let order = "default";
+
+  function selectedTags() {
+    return checkboxes.filter((c) => c.checked).map((c) => c.value);
+  }
+
+  function cardMatches(card, tags) {
+    if (!tags.length) return true;
+    const cardTags = (card.dataset.tags || "").split(",").filter(Boolean);
+    return tags.every((t) => cardTags.includes(t));
+  }
+
+  function applyFilter() {
+    const tags = selectedTags();
+    let visible = cards.filter((c) => cardMatches(c, tags));
+
+    if (order !== "default") {
+      visible = visible.slice().sort((a, b) => {
+        const pa = parseFloat(a.dataset.price);
+        const pb = parseFloat(b.dataset.price);
+        return order === "price-asc" ? pa - pb : pb - pa;
+      });
+    }
+
+    cards.forEach((c) => c.classList.toggle("hidden", !visible.includes(c)));
+    visible.forEach((c) => grid.appendChild(c));
+    noMatches.classList.toggle("hidden", visible.length > 0);
+    if (filterCount) {
+      filterCount.textContent =
+        tags.length > 0 ? `— ${visible.length} de ${cards.length}` : "";
+    }
+  }
 
   sortSelect?.addEventListener("change", function () {
-    const order = this.value;
-    const cards = Array.from(grid.querySelectorAll(".product-card"));
-    if (order === "default") return;
-
-    cards.sort((a, b) => {
-      const pa = parseFloat(a.dataset.price);
-      const pb = parseFloat(b.dataset.price);
-      return order === "price-asc" ? pa - pb : pb - pa;
-    });
-
-    cards.forEach((c) => grid.appendChild(c));
+    order = this.value;
+    applyFilter();
   });
+
+  checkboxes.forEach((cb) => cb.addEventListener("change", applyFilter));
+
+  const details = document.getElementById("filter-details");
+  const lgMq = window.matchMedia("(min-width: 1024px)");
+  function syncDetails() {
+    if (lgMq.matches) details.open = true;
+  }
+  syncDetails();
+  lgMq.addEventListener("change", syncDetails);
 </script>
