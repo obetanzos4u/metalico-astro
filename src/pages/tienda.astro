@@ -142,7 +142,7 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
                 class="tag-check h-4 w-4 rounded border-slate-300 focus:ring-[#ff8308]"
                 style="accent-color:#ff8308"
               />
-              <span class="flex-1">{t}</span>
+              <span class="flex-1">{t.charAt(0).toUpperCase() + t.slice(1).toLowerCase()}</span>
               <span class="text-xs text-slate-400">({count})</span>
             </label>
           ))}
