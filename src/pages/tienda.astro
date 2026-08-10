@@ -45,6 +45,8 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
             <option value="default">Ordenar por</option>
             <option value="price-asc">Precio: menor a mayor</option>
             <option value="price-desc">Precio: mayor a menor</option>
+            <option value="title-asc">Título: A - Z</option>
+            <option value="title-desc">Título: Z - A</option>
           </select>
         </div>
 
@@ -59,6 +61,7 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
           <div
             class="product-card group border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
             data-price={price.amount}
+            data-title={p.title.toLowerCase()}
             data-tags={(p.tags ?? []).map((t) => t.toLowerCase()).join(",")}
           >
             <a href={shopUrl} target="_blank" rel="noopener noreferrer" class="block">
@@ -246,9 +249,21 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
 
     if (order !== "default") {
       visible = visible.slice().sort((a, b) => {
-        const pa = parseFloat(a.dataset.price);
-        const pb = parseFloat(b.dataset.price);
-        return order === "price-asc" ? pa - pb : pb - pa;
+        if (order === "price-asc") {
+          const pa = parseFloat(a.dataset.price);
+          const pb = parseFloat(b.dataset.price);
+          return pa - pb;
+        }
+        if (order === "price-desc") {
+          const pa = parseFloat(a.dataset.price);
+          const pb = parseFloat(b.dataset.price);
+          return pb - pa;
+        }
+        const ta = a.dataset.title;
+        const tb = b.dataset.title;
+        return order === "title-asc"
+          ? ta.localeCompare(tb, "es")
+          : tb.localeCompare(ta, "es");
       });
     }
 
