@@ -135,6 +135,11 @@ import Logo from "./Logo.astro";
   function closeMenu() {
     modalMenu?.classList.add("hidden");
     document.body.style.overflow = "";
+    const backdrop = document.querySelector("#menu-backdrop");
+    if (backdrop) {
+      backdrop.style.opacity = "0";
+      backdrop.style.visibility = "hidden";
+    }
   }
 
   menuBtn?.addEventListener("click", openMenu);
@@ -148,24 +153,26 @@ import Logo from "./Logo.astro";
   const listItem = document.querySelectorAll("#landing-header li");
   const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
 
-  listItem.forEach((item) => {
-    item.addEventListener("mouseenter", () => {
-      const { left, top, width, height } = item.getBoundingClientRect();
+  if (menuBackDrop && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    listItem.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
 
-      menuBackDrop.style.setProperty("--left", `${left}px`);
-      menuBackDrop.style.setProperty("--top", `${top}px`);
-      menuBackDrop.style.setProperty("--width", `${width}px`);
-      menuBackDrop.style.setProperty("--height", `${height}px`);
+        menuBackDrop.style.setProperty("--left", `${left}px`);
+        menuBackDrop.style.setProperty("--top", `${top}px`);
+        menuBackDrop.style.setProperty("--width", `${width}px`);
+        menuBackDrop.style.setProperty("--height", `${height}px`);
 
-      menuBackDrop.style.opacity = "1";
-      menuBackDrop.style.visibility = "visible";
+        menuBackDrop.style.opacity = "1";
+        menuBackDrop.style.visibility = "visible";
+      });
+
+      item.addEventListener("mouseleave", () => {
+        menuBackDrop.style.opacity = "0";
+        menuBackDrop.style.visibility = "hidden";
+      });
     });
-
-    item.addEventListener("mouseleave", () => {
-      menuBackDrop.style.opacity = "0";
-      menuBackDrop.style.visibility = "hidden";
-    });
-  });
+  }
 </script>
 
 <script>
@@ -190,3 +197,14 @@ import Logo from "./Logo.astro";
   const sectionElements = document.querySelectorAll(".landing-section");
   sectionElements.forEach((section) => observer.observe(section));
 </script>
+
+<style>
+  @media (hover: none) {
+    #modal-menu a:hover {
+      background-color: transparent;
+    }
+    #modal-menu a:active {
+      background-color: rgb(241 245 249);
+    }
+  }
+</style>
