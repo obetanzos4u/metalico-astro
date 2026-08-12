@@ -310,7 +310,7 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
       content.style.opacity = "";
       content.style.overflow = "";
       details.open = false;
-      document.getElementById("products-section").scrollIntoView({ behavior: "smooth", block: "start" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
