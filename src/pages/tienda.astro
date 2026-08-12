@@ -39,7 +39,7 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
 
   <main class="max-w-7xl mx-auto px-4 pb-16">
     <div class="px-8 lg:px-0 flex flex-col lg:flex-row gap-12 xl:gap-16">
-      <div class="flex-1 min-w-0 order-2 lg:order-1">
+      <div id="products-section" class="flex-1 min-w-0 order-2 lg:order-1">
         <div class="hidden lg:flex justify-end mb-8 lg:mb-4">
           <select id="sort-select" class="text-sm border border-gray-300 rounded px-3 py-1.5 text-gray-700 bg-white cursor-pointer">
             <option value="default">Ordenar por</option>
@@ -310,7 +310,7 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
       content.style.opacity = "";
       content.style.overflow = "";
       details.open = false;
-      grid.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.getElementById("products-section").scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 
