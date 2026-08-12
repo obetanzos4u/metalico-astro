@@ -293,7 +293,7 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
 
   function closeFilterSmooth() {
     if (lgMq.matches || !details.open) return;
-    const content = details.querySelector(".py-3");
+    const content = details.querySelector(":scope > div");
     if (!content) return;
 
     content.style.height = content.scrollHeight + "px";
