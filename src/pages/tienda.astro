@@ -139,7 +139,7 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
           <span id="filter-count" class="text-[11px] font-normal text-slate-500 lg:hidden">▼</span>
           <span id="filter-count-desk" class="text-[11px] font-normal text-slate-500 hidden lg:inline"></span>
         </summary>
-        <div class="px-4 py-3 space-y-2 border-t border-slate-100">
+        <div class="px-4 py-3 space-y-2 border-t border-slate-100 transition-[height,opacity] duration-300 ease-out">
           <p class="text-[11px] text-slate-400">Los productos deben cumplir todos los tags seleccionados</p>
           {allTags.map(([t, count]) => (
             <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
@@ -281,10 +281,38 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
     applyFilter();
   });
 
-  checkboxes.forEach((cb) => cb.addEventListener("change", applyFilter));
+  checkboxes.forEach((cb) =>
+    cb.addEventListener("change", () => {
+      applyFilter();
+      closeFilterSmooth();
+    })
+  );
 
   const details = document.getElementById("filter-details");
   const lgMq = window.matchMedia("(min-width: 1024px)");
+
+  function closeFilterSmooth() {
+    if (lgMq.matches || !details.open) return;
+    const content = details.querySelector(".py-3");
+    if (!content) return;
+
+    content.style.height = content.scrollHeight + "px";
+    content.style.overflow = "hidden";
+    void content.offsetHeight;
+
+    content.style.height = "0px";
+    content.style.opacity = "0";
+
+    content.addEventListener("transitionend", function onEnd(e) {
+      if (e.propertyName !== "height") return;
+      content.removeEventListener("transitionend", onEnd);
+      content.style.height = "";
+      content.style.opacity = "";
+      content.style.overflow = "";
+      details.open = false;
+    });
+  }
+
   function syncDetails() {
     if (lgMq.matches) details.open = true;
   }
