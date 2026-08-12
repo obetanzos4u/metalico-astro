@@ -310,6 +310,7 @@ const allTags = [...tagCounts.entries()].sort((a, b) => a[0].localeCompare(b[0])
       content.style.opacity = "";
       content.style.overflow = "";
       details.open = false;
+      grid.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 
