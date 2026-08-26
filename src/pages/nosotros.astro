@@ -104,7 +104,9 @@ import Layout from "../layouts/Layout.astro";
 
     <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center">
       <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl leading-none w-12 h-12 flex items-center justify-center hover:opacity-70 z-10 cursor-pointer">&times;</button>
+      <button id="lightbox-prev" class="absolute left-4 md:left-8 text-white text-4xl leading-none w-12 h-12 flex items-center justify-center hover:opacity-70 z-10 cursor-pointer" aria-label="Imagen anterior">&#10094;</button>
       <img id="lightbox-img" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg" src="" alt="" />
+      <button id="lightbox-next" class="absolute right-4 md:right-8 text-white text-4xl leading-none w-12 h-12 flex items-center justify-center hover:opacity-70 z-10 cursor-pointer" aria-label="Imagen siguiente">&#10095;</button>
     </div>
 
     <!-- Tecnología -->
@@ -225,11 +227,21 @@ import Layout from "../layouts/Layout.astro";
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     const closeBtn = document.getElementById("lightbox-close");
+    const prevBtn = document.getElementById("lightbox-prev");
+    const nextBtn = document.getElementById("lightbox-next");
+    const galleryItems = Array.from(document.querySelectorAll(".gallery-item"));
+    let currentIndex = 0;
 
-    document.querySelectorAll(".gallery-item").forEach(function (el) {
+    function showImage(index) {
+      currentIndex = (index + galleryItems.length) % galleryItems.length;
+      const img = galleryItems[currentIndex].querySelector("img");
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    }
+
+    galleryItems.forEach(function (el, index) {
       el.addEventListener("click", function () {
-        const img = this.querySelector("img");
-        lightboxImg.src = img.src;
+        showImage(index);
         lightbox.classList.remove("hidden");
         lightbox.classList.add("flex");
         document.body.style.overflow = "hidden";
@@ -243,11 +255,19 @@ import Layout from "../layouts/Layout.astro";
     }
 
     closeBtn.addEventListener("click", closeLightbox);
+    prevBtn.addEventListener("click", function () {
+      showImage(currentIndex - 1);
+    });
+    nextBtn.addEventListener("click", function () {
+      showImage(currentIndex + 1);
+    });
     lightbox.addEventListener("click", function (e) {
       if (e.target === lightbox) closeLightbox();
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+      if (e.key === "ArrowRight") showImage(currentIndex + 1);
     });
   });
 </script>
