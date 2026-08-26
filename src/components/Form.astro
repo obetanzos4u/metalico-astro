@@ -11,6 +11,9 @@ const emailjsTemplateId =
   <form
     id="form"
     class="min-h-0 sm:min-h-0 md:min-h-80 lg:min-h-80 xl:min-h-80 2xl:min-h-80"
+    data-emailjs-public-key={emailjsPublicKey}
+    data-emailjs-service-id={emailjsServiceId}
+    data-emailjs-template-id={emailjsTemplateId}
   >
     <div id="form__inputs">
       <div class="tab__content mod--contact">
@@ -577,25 +580,23 @@ const emailjsTemplateId =
   }
 </style>
 
-<script
-  type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-  defer
-></script>
-<script
-  type="text/javascript"
-  define:vars={{ emailjsPublicKey, emailjsServiceId, emailjsTemplateId }}
->
+<script>
+  import emailjs from "@emailjs/browser";
+
   document.addEventListener("DOMContentLoaded", function () {
-    emailjs.init(emailjsPublicKey);
+    const form = document.getElementById("form");
     const btn = document.getElementById("button");
+    const emailjsPublicKey = form.dataset.emailjsPublicKey;
+    const emailjsServiceId = form.dataset.emailjsServiceId;
+    const emailjsTemplateId = form.dataset.emailjsTemplateId;
+
+    emailjs.init(emailjsPublicKey);
 
     btn.addEventListener("click", function (event) {
       event.preventDefault(); // Previene la acción por defecto del ancla
 
       btn.textContent = "Enviando...";
 
-      const form = document.getElementById("form");
       const serviceID = emailjsServiceId;
       const templateID = emailjsTemplateId;
 
