@@ -580,18 +580,14 @@ const emailjsTemplateId =
 <script
   type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+  defer
 ></script>
 <script
   type="text/javascript"
   define:vars={{ emailjsPublicKey, emailjsServiceId, emailjsTemplateId }}
 >
-  (function () {
-    emailjs.init(
-      emailjsPublicKey,
-    );
-  })();
-
   document.addEventListener("DOMContentLoaded", function () {
+    emailjs.init(emailjsPublicKey);
     const btn = document.getElementById("button");
 
     btn.addEventListener("click", function (event) {
