@@ -1,11 +1,11 @@
 import emailjs from "@emailjs/browser";
 
-const form = document.getElementById("form") as HTMLFormElement | null;
+const form = document.getElementById("form");
 
 if (form && !form.dataset.emailjsInitialized) {
   form.dataset.emailjsInitialized = "true";
 
-  const btn = document.getElementById("button") as HTMLButtonElement;
+  const btn = document.getElementById("button");
   const emailjsPublicKey = form.dataset.emailjsPublicKey;
   const emailjsServiceId = form.dataset.emailjsServiceId;
   const emailjsTemplateId = form.dataset.emailjsTemplateId;
@@ -36,32 +36,32 @@ if (form && !form.dataset.emailjsInitialized) {
 
   window.addEventListener("load", () => form.reset(), { once: true });
 
-  const fileInput = document.getElementById("archivo") as HTMLInputElement;
+  const fileInput = document.getElementById("archivo");
   fileInput.addEventListener("change", () => {
     const fileName = fileInput.files?.[0]?.name;
     const fileNameElement = document.getElementById("nombreArchivo");
     if (fileNameElement) fileNameElement.textContent = fileName || "Selecciona tu archivo";
   });
 
-  const focusElements = document.querySelectorAll<HTMLElement>(
+  const focusElements = document.querySelectorAll(
     ".activeFocusInput, .activeFocusAnchor",
   );
-  const formLabels = document.querySelectorAll<HTMLElement>(".activeFocusLabel");
+  const formLabels = document.querySelectorAll(".activeFocusLabel");
 
   if (focusElements.length === formLabels.length) {
     focusElements.forEach((element, index) => {
       const label = formLabels[index];
       element.addEventListener("focus", () => label.classList.add("active"));
       element.addEventListener("blur", () => {
-        if (!(element as HTMLInputElement).value) label.classList.remove("active");
+        if (!element.value) label.classList.remove("active");
       });
     });
   }
 
-  const toggleArrows = document.querySelectorAll<HTMLElement>(
+  const toggleArrows = document.querySelectorAll(
     ".form-dropdown__toggle-arrow, .w-toggle-arrow",
   );
-  const selectElement = document.getElementById("service_type") as HTMLSelectElement;
+  const selectElement = document.getElementById("service_type");
   const labelElement = document.getElementById("service_type_label");
 
   toggleArrows.forEach((toggleArrow) => {
@@ -84,7 +84,7 @@ if (form && !form.dataset.emailjsInitialized) {
     toggleArrows.forEach((toggleArrow) => toggleArrow.classList.remove("w--open"));
   });
 
-  const message = document.getElementById("message") as HTMLTextAreaElement;
+  const message = document.getElementById("message");
   const charCount = document.getElementById("wordCount");
 
   message.addEventListener("input", () => {
