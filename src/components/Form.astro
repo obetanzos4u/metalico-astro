@@ -581,131 +581,19 @@ const emailjsTemplateId =
 </style>
 
 <script>
-  import emailjs from "@emailjs/browser";
+  const form = document.getElementById("form");
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("form");
-    const btn = document.getElementById("button");
-    const emailjsPublicKey = form.dataset.emailjsPublicKey;
-    const emailjsServiceId = form.dataset.emailjsServiceId;
-    const emailjsTemplateId = form.dataset.emailjsTemplateId;
-
-    emailjs.init(emailjsPublicKey);
-
-    btn.addEventListener("click", function (event) {
-      event.preventDefault(); // Previene la acción por defecto del ancla
-
-      btn.textContent = "Enviando...";
-
-      const serviceID = emailjsServiceId;
-      const templateID = emailjsTemplateId;
-
-      const msg = document.getElementById("form-message");
-      msg.className = "form-message";
-
-      emailjs.sendForm(serviceID, templateID, form).then(
-        () => {
-          btn.textContent = "Enviar mensaje";
-          msg.textContent = "Mensaje enviado con éxito";
-          msg.classList.add("success");
-          form.reset();
-        },
-        (_err) => {
-          btn.textContent = "Enviar mensaje";
-          msg.textContent = "Error al enviar. Intenta de nuevo.";
-          msg.classList.add("error");
-        },
-      );
-    });
-
-    window.onload = function () {
-      document.getElementById("form").reset();
-    };
-
-    // Este código asume que tienes un elemento en tu HTML para mostrar el nombre del archivo
-    // Por ejemplo, un span con id="nombreArchivo"
-    document.getElementById("archivo").onchange = function (e) {
-      var fileName = e.target.files[0]?.name;
-      var el = document.getElementById("nombreArchivo");
-      if (el) el.textContent = fileName || "Selecciona tu archivo";
-    };
-
-    // Agregar la clase “active” al label del formulario cuando el campo de correo esté activo, puedes usar JavaScript para detectar el enfoque (focus) y desenfoque (blur) del campo de entrada.
-    const focusElements = document.querySelectorAll(
-      ".activeFocusInput, .activeFocusAnchor",
+  if (form) {
+    const loadFormScript = () => import("../scripts/contact-form");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+          loadFormScript();
+        }
+      },
+      { rootMargin: "400px 0px" },
     );
-    const formLabels = document.querySelectorAll(".activeFocusLabel");
-
-    // Asegurarse de que hay la misma cantidad de elementos y labels
-    if (focusElements.length === formLabels.length) {
-      focusElements.forEach((element, index) => {
-        const label = formLabels[index];
-
-        element.addEventListener("focus", () => {
-          label.classList.add("active");
-        });
-
-        element.addEventListener("blur", () => {
-          if (!element.value) {
-            label.classList.remove("active");
-          }
-        });
-      });
-    } else {
-      console.error("El número de elementos y labels no coincide.");
-    }
-
-    const toggleArrows = document.querySelectorAll(
-      ".form-dropdown__toggle-arrow, .w-toggle-arrow",
-    );
-
-    const selectElement = document.getElementById("service_type");
-    const labelElement = document.getElementById("service_type_label");
-
-    toggleArrows.forEach((toggleArrow) => {
-      toggleArrow.addEventListener("click", function () {
-        selectElement.classList.toggle("hidden");
-        selectElement.classList.toggle("select-visible");
-        selectElement.size = selectElement.classList.contains("select-visible")
-          ? selectElement.options.length
-          : 1;
-
-        // Añadir o quitar la clase "w--open" para el icono de desplazamiento
-        toggleArrow.classList.toggle("w--open");
-      });
-    });
-
-    // Asegurarse de que se puede seleccionar una opción
-    selectElement.addEventListener("change", function () {
-      // Actualizar el texto del label con la opción seleccionada
-      const selectedOptionText =
-        selectElement.options[selectElement.selectedIndex].text;
-      labelElement.innerHTML = `${selectedOptionText}`;
-
-      // Añadir clase para cambiar el color del texto a negro
-      labelElement.classList.add("selected-option");
-
-      // Ocultar el select después de seleccionar una opción
-      selectElement.classList.add("hidden");
-      selectElement.classList.remove("select-visible");
-      selectElement.size = 1; // Vuelve al tamaño normal después de seleccionar
-
-      // Asegurarse de que el icono de desplazamiento vuelve a su estado original
-      toggleArrows.forEach((toggleArrow) => {
-        toggleArrow.classList.remove("w--open");
-      });
-    });
-
-    const message = document.getElementById("message");
-    message.addEventListener("input", function () {
-      const maxChars = 350;
-      const charCount = document.getElementById("wordCount");
-
-      if (message.value.length > maxChars) {
-        message.value = message.value.substring(0, maxChars);
-      }
-
-      charCount.textContent = `${message.value.length} / ${maxChars} caracteres`;
-    });
-  });
+    observer.observe(form);
+  }
 </script>
