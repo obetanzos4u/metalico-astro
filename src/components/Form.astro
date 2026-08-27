@@ -108,8 +108,8 @@ const emailjsTemplateId =
                     >Desarrollo de productos</option
                   >
                   <option value="parts_assembly">Unión de piezas</option>
-                  <option value="part_modeling">Modelado de piezas</option>
                   <option value="other_service">Otro servicio</option>
+                  <option value="part_modeling">Modelado de piezas</option>
                 </select>
               </div>
             </div>
@@ -465,8 +465,7 @@ const emailjsTemplateId =
   .input-wrap {
     z-index: 1;
     width: 100%;
-    position: absolute;
-    right: 0.75rem;
+    position: relative;
     transform: translate(0);
   }
 
@@ -479,7 +478,8 @@ const emailjsTemplateId =
     border-color: var(--white);
     background-color: var(--white);
     color: var(--blue);
-    position: relative;
+    position: absolute;
+    right: 0.75rem;
   }
 
   .button__icons {
@@ -496,7 +496,8 @@ const emailjsTemplateId =
     margin-bottom: -1rem;
     transition: all 0.4s;
     display: flex;
-    position: relative;
+    position: absolute;
+    right: 0.75rem;
     overflow: hidden;
     transform: translate(0);
   }
