@@ -25,6 +25,7 @@ if (form && !form.dataset.emailjsInitialized) {
         msg.textContent = "Mensaje enviado con éxito";
         msg.classList.add("success");
         form.reset();
+        clearAttachedFile();
       },
       () => {
         btn.textContent = "Enviar mensaje";
@@ -37,11 +38,22 @@ if (form && !form.dataset.emailjsInitialized) {
   window.addEventListener("load", () => form.reset(), { once: true });
 
   const fileInput = document.getElementById("archivo");
+  const fileNameElement = document.getElementById("nombreArchivo");
+  const removeFileButton = document.getElementById("remove-file");
+
+  const clearAttachedFile = () => {
+    fileInput.value = "";
+    fileNameElement.textContent = "Selecciona tu archivo";
+    removeFileButton.hidden = true;
+  };
+
   fileInput.addEventListener("change", () => {
     const fileName = fileInput.files?.[0]?.name;
-    const fileNameElement = document.getElementById("nombreArchivo");
-    if (fileNameElement) fileNameElement.textContent = fileName || "Selecciona tu archivo";
+    fileNameElement.textContent = fileName || "Selecciona tu archivo";
+    removeFileButton.hidden = !fileName;
   });
+
+  removeFileButton.addEventListener("click", clearAttachedFile);
 
   const focusElements = document.querySelectorAll(
     ".activeFocusInput, .activeFocusAnchor",
