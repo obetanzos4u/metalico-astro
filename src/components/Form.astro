@@ -108,6 +108,8 @@ const emailjsTemplateId =
                     >Desarrollo de productos</option
                   >
                   <option value="parts_assembly">Unión de piezas</option>
+                  <option value="part_modeling">Modelado de piezas</option>
+                  <option value="other_service">Otro servicio</option>
                 </select>
               </div>
             </div>
@@ -136,14 +138,23 @@ const emailjsTemplateId =
                 style="border-bottom: 0; height: 8rem;"
               /> -->
               <!-- Campo para subir archivos -->
-              <label
-                for="archivo"
-                class="custom-file-upload input w-input size-full justify-end"
-                style="height: 2rem; border-bottom: 0; margin-top: -2rem"
-              >
-                <img src="/attachment-icon.png" alt="Icono de archivo" />
-                <span id="nombreArchivo" class="file-name">Selecciona tu archivo</span>
-              </label>
+              <div class="file-upload-row">
+                <label
+                  for="archivo"
+                  class="custom-file-upload input w-input size-full justify-end"
+                  style="height: 2rem; border-bottom: 0; margin-top: -2rem"
+                >
+                  <img src="/attachment-icon.png" alt="Icono de archivo" />
+                  <span id="nombreArchivo" class="file-name">Selecciona tu archivo</span>
+                </label>
+                <button
+                  type="button"
+                  id="remove-file"
+                  class="remove-file"
+                  aria-label="Eliminar archivo adjunto"
+                  hidden
+                >×</button>
+              </div>
               <input
                 type="file"
                 id="archivo"
@@ -170,7 +181,7 @@ const emailjsTemplateId =
               type="button"
               id="button"
               class="button"
-              >Enviar un mensaje
+              ><span>Enviar un mensaje</span>
               <div class="button__icons is-white">
                 <div class="icon-small w-embed">
                   <svg
@@ -267,6 +278,19 @@ const emailjsTemplateId =
   .custom-file-upload {
     display: flex;
     cursor: pointer;
+  }
+  .file-upload-row {
+    position: relative;
+  }
+  .remove-file {
+    color: #44445a;
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.25rem;
+    position: absolute;
+    right: 0;
+    top: -1.75rem;
   }
   .custom-file-upload img {
     /* Estilos para tu imagen, por ejemplo: */
@@ -387,7 +411,7 @@ const emailjsTemplateId =
     border-radius: 99px;
     justify-content: center;
     align-items: center;
-    padding: 1.1rem 0.75rem 1.1rem 1.5rem;
+    padding: 1.1rem 3.25rem;
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.4;
@@ -441,7 +465,8 @@ const emailjsTemplateId =
   .input-wrap {
     z-index: 1;
     width: 100%;
-    position: relative;
+    position: absolute;
+    right: 0.75rem;
     transform: translate(0);
   }
 
